@@ -46,27 +46,26 @@ body{
 
 /* ========== 状态栏 ========== */
 .status-bar{
-  height:calc(var(--safe-top) + 4px);
+  height:calc(var(--safe-top) + 0px);
   min-height:44px;
-  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0));
+  background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));
   display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 20px 8px;
+  padding:0 20px 6px;
   position:absolute;top:0;left:0;right:0;z-index:100;
 }
-.status-time{font-size:.8rem;font-weight:800;color:var(--dark)}
-.status-icons{display:flex;gap:6px;align-items:center;font-size:.74rem;color:var(--dark)}
+.status-time{font-size:.78rem;font-weight:800;color:var(--dark)}
+.status-icons{display:flex;gap:6px;align-items:center;font-size:.7rem;color:var(--dark)}
 
 /* ========== 页头 ========== */
 .page-header{
-  position:absolute;top:calc(var(--safe-top) + 4px);left:0;right:0;z-index:90;
-  min-top:44px;
+  position:absolute;top:calc(var(--safe-top) + 2px);left:0;right:0;z-index:90;
   background:rgba(255,255,255,.6);
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid rgba(255,183,208,.15);
 }
 .header-row{
   display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px 12px;
+  padding:10px 18px 10px;
 }
 .header-title{font-size:1.1rem;font-weight:900;color:var(--dark);letter-spacing:.02em}
 .header-badge{
@@ -378,7 +377,7 @@ body{
 .loading-text{font-size:.92rem;color:var(--pinky);font-weight:800}
 
 /* ========== 顶部高度计算 ========== */
-#app-scroll{top:calc(var(--safe-top) + 64px)}
+#app-scroll{top:calc(var(--safe-top) + 56px)}
 </style>
 </head>
 <body>
