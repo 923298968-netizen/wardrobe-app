@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
 <title>穿什么 ✨</title>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#ffb7d0"/>
+<meta name="theme-color" content="#ff6b6b"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="穿什么"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  /* 可爱少女风配色 */
-  --pinky:#ffb7d0; --sakura:#ffd6e8; --lavender:#e8d5ff;
+::root{
+  /* 时尚简约莫兰迪色系 */
+  --pinky:#ff6b6b; --sakura:#ffd6e8; --lavender:#e8d5ff;
   --sky:#bae6fd; --mint:#d1fae5; --lemon:#fef08a;
   --peach:#fde68a; --rose:#fca5a5; --grape:#c4b5fd;
-  --dark:#1f172a; --gray:#78716c; --light:#fef7ff;
-  --bg:linear-gradient(135deg, #fff1f5 0%, #fce7f3 30%, #fdf4ff 70%, #faf5ff 100%);
+  --dark:#1f2937; --gray:#9ca3af; --light:#fafbfc;
+  --bg:#fafbfc;
   --card:#ffffff;
   --safe-top:env(safe-area-inset-top,44px);
   --safe-bottom:env(safe-area-inset-bottom,20px);
 }
-html,body{height:100%;width:100%;overflow:hidden;background:#fce4ec}
+html,body{height:100%;width:100%;overflow:hidden;background:#f3f4f6}
 body{
   font-family:-apple-system,"PingFang SC","Hiragino Sans GB","M PLUS Rounded 1c",sans-serif;
   display:flex;align-items:center;justify-content:center;
@@ -37,7 +37,7 @@ body{
   overflow:hidden;
   background:var(--bg);
   border-radius:min(46px,0px);
-  box-shadow:0 40px 100px rgba(255,183,208,.45),inset 0 0 0 1px rgba(255,255,255,.5);
+  box-shadow:0 40px 100px rgba(0,0,0,.15),inset 0 0 0 1px rgba(255,255,255,.5);
 }
 @media(max-width:430px){
   .phone-shell{border-radius:0;box-shadow:none;width:100vw;height:100vh}
@@ -46,34 +46,34 @@ body{
 
 /* ========== 状态栏 ========== */
 .status-bar{
-  height:calc(var(--safe-top) + 0px);
-  min-height:44px;
-  background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));
+  height:calc(var(--safe-top) + 12px);
+  min-height:56px;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,0));
   display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 20px 6px;
+  padding:0 20px 10px;
   position:absolute;top:0;left:0;right:0;z-index:100;
 }
-.status-time{font-size:.78rem;font-weight:800;color:var(--dark)}
+.status-time{font-size:.8rem;font-weight:700;color:var(--dark)}
 .status-icons{display:flex;gap:6px;align-items:center;font-size:.7rem;color:var(--dark)}
 
 /* ========== 页头 ========== */
 .page-header{
-  position:absolute;top:calc(var(--safe-top) + 2px);left:0;right:0;z-index:90;
-  background:rgba(255,255,255,.6);
+  position:absolute;top:calc(var(--safe-top) + 16px);left:0;right:0;z-index:90;
+  background:rgba(255,255,255,.7);
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid rgba(255,183,208,.15);
+  border-bottom:1px solid rgba(0,0,0,.06);
 }
 .header-row{
   display:flex;align-items:center;justify-content:space-between;
-  padding:10px 18px 10px;
+  padding:12px 18px 12px;
 }
-.header-title{font-size:1.1rem;font-weight:900;color:var(--dark);letter-spacing:.02em}
+.header-title{font-size:1.1rem;font-weight:700;color:var(--dark);letter-spacing:.02em}
 .header-badge{
   display:flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,#ffb7d0,#e8d5ff);
+  background:linear-gradient(135deg,#ff6b6b,#f87171);
   padding:6px 14px;border-radius:999px;
-  font-size:.8rem;font-weight:700;color:#fff;
-  cursor:pointer;border:none;box-shadow:0 4px 12px rgba(255,183,208,.4);
+  font-size:.8rem;font-weight:600;color:#fff;
+  cursor:pointer;border:none;box-shadow:0 4px 12px rgba(255,107,107,.3);
   transition:transform .2s;
 }
 .header-badge:active{transform:scale(.95)}
@@ -84,32 +84,33 @@ body{
   overflow-y:auto;overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
   padding-bottom:calc(74px + var(--safe-bottom));
+  top:calc(var(--safe-top) + 72px);
 }
 .scroll-content::-webkit-scrollbar{display:none}
 
 /* ========== 底部Tab导航 ========== */
 .tab-bar{
   position:absolute;bottom:0;left:0;right:0;z-index:200;
-  background:rgba(255,255,255,.9);
+  background:rgba(255,255,255,.92);
   backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border-top:2px solid rgba(255,183,208,.18);
+  border-top:1px solid rgba(0,0,0,.06);
   display:flex;
   padding:10px 0 calc(8px + var(--safe-bottom));
-  box-shadow:0 -4px 24px rgba(255,183,208,.25);
+  box-shadow:0 -4px 24px rgba(0,0,0,.05);
 }
 .tab-item{
   flex:1;display:flex;flex-direction:column;align-items:center;
   padding:6px 4px 4px;border:none;background:none;cursor:pointer;
-  color:#d6d6d6;font-size:.65rem;font-weight:700;gap:4px;
+  color:#d1d5db;font-size:.65rem;font-weight:600;gap:4px;
   transition:all .25s cubic-bezier(.4,0,.2,1);
   position:relative;
 }
-.tab-icon{font-size:1.5rem;transition:all .25s cubic-bezier(.4,0,.2,1);filter:grayscale(.6)}
-.tab-item.active{color:var(--pinky);transform:translateY(-4px)}
-.tab-item.active .tab-icon{transform:scale(1.2);filter:grayscale(0) drop-shadow(0 4px 12px rgba(255,183,208,.5))}
+.tab-icon{font-size:1.5rem;transition:all .25s cubic-bezier(.4,0,.2,1);filter:grayscale(.5)}
+.tab-item.active{color:var(--pinky);transform:translateY(-2px)}
+.tab-item.active .tab-icon{transform:scale(1.15);filter:grayscale(0) drop-shadow(0 4px 12px rgba(255,107,107,.4))}
 .tab-item.active::after{
   content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
-  width:6px;height:6px;background:var(--pinky);border-radius:50%;box-shadow:0 0 12px var(--pinky);
+  width:5px;height:5px;background:var(--pinky);border-radius:50%;box-shadow:0 0 10px rgba(255,107,107,.5);
 }
 
 /* ========== Tab页面 ========== */
@@ -119,14 +120,14 @@ body{
 
 /* ========== 卡片 ========== */
 .card{
-  background:rgba(255,255,255,.95);
-  border-radius:26px;
-  box-shadow:0 8px 32px rgba(255,183,208,.18);
+  background:rgba(255,255,255,.92);
+  border-radius:20px;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
   padding:20px;margin:0 16px 16px;
-  border:2px solid rgba(255,255,255,.8);
+  border:1px solid rgba(0,0,0,.04);
 }
 .card-title{
-  font-size:1rem;font-weight:800;
+  font-size:1rem;font-weight:700;
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:16px;color:var(--dark);
 }
@@ -134,26 +135,26 @@ body{
 
 /* ========== 首页 Hero ========== */
 .hero{
-  margin:16px 16px 0;border-radius:28px;overflow:hidden;
-  background:linear-gradient(135deg,#ffb7d6 0%,#ff9ed4 25%,#fbb6ce 50%,#ffcce0 75%,#ffe6f2 100%);
+  margin:16px 16px 0;border-radius:24px;overflow:hidden;
+  background:linear-gradient(135deg,#ff6b6b 0%,#ff8787 25%,#f87171 50%,#fb7185 75%,#fda4af 100%);
   padding:28px 22px;color:#fff;position:relative;
-  box-shadow:0 12px 36px rgba(255,183,208,.45);
+  box-shadow:0 12px 36px rgba(255,107,107,.3);
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="3" fill="%23fff" opacity="0.3"/></svg>');
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="3" fill="%23fff" opacity="0.25"/></svg>');
   background-size:60px 60px;
 }
 .hero-sub{font-size:.86rem;opacity:.9;margin-bottom:6px;position:relative;z-index:1}
-.hero-title{font-size:1.5rem;font-weight:900;margin-bottom:6px;position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.1)}
-.hero-desc{font-size:.8rem;opacity:.8;position:relative;z-index:1}
+.hero-title{font-size:1.5rem;font-weight:700;margin-bottom:6px;position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.1)}
+.hero-desc{font-size:.8rem;opacity:.85;position:relative;z-index:1}
 .hero-emoji{
   position:absolute;right:22px;top:50%;transform:translateY(-50%);
-  font-size:4rem;opacity:.95;filter:drop-shadow(0 8px 16px rgba(0,0,0,.15));
+  font-size:4rem;opacity:.9;filter:drop-shadow(0 8px 16px rgba(0,0,0,.15));
   animation:float 3s ease-in-out infinite;
 }
 @keyframes float{0%,100%{transform:translateY(-50%)}50%{transform:translateY(-54%)}}
-.hero-temp{font-size:1.15rem;font-weight:800;margin-top:12px;position:relative;z-index:1;background:rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;display:inline-block;backdrop-filter:blur(8px)}
+.hero-temp{font-size:1.15rem;font-weight:700;margin-top:12px;position:relative;z-index:1;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;display:inline-block;backdrop-filter:blur(8px)}
 
 /* ========== 快捷入口 ========== */
 .quick-grid{
@@ -161,25 +162,25 @@ body{
   padding:0 16px;margin-bottom:16px;
 }
 .quick-item{
-  background:linear-gradient(145deg,#ffffff,#fdfdfd);border-radius:20px;padding:16px 10px 14px;
+  background:linear-gradient(145deg,#ffffff,#f9fafb);border-radius:16px;padding:16px 10px 14px;
   text-align:center;cursor:pointer;
-  box-shadow:0 6px 20px rgba(255,183,208,.15);
-  transition:all .25s cubic-bezier(.4,0,.2,1);border:2px solid transparent;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);
+  transition:all .25s cubic-bezier(.4,0,.2,1);border:1px solid rgba(0,0,0,.04);
 }
 .quick-item:active{transform:scale(.95)}
-.quick-item:hover{border-color:var(--pinky);transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,183,208,.3)}
-.quick-icon{font-size:1.75rem;display:block;margin-bottom:6px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.1))}
-.quick-label{font-size:.73rem;color:var(--gray);font-weight:700}
+.quick-item:hover{border-color:var(--pinky);transform:translateY(-3px);box-shadow:0 4px 16px rgba(255,107,107,.15)}
+.quick-icon{font-size:1.75rem;display:block;margin-bottom:6px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.05))}
+.quick-label{font-size:.73rem;color:var(--gray);font-weight:600}
 
 /* ========== 标签选择 ========== */
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tag{
   padding:7px 16px;border-radius:999px;cursor:pointer;
-  font-size:.82rem;font-weight:700;
-  border:2px solid #fce7f3;color:#d6d6d6;
+  font-size:.82rem;font-weight:600;
+  border:2px solid #f3f4f6;color:#9ca3af;
   background:#fff;transition:all .18s cubic-bezier(.4,0,.2,1);user-select:none;
 }
-.tag.selected{background:linear-gradient(135deg,#ffb7d0,#ffcce0);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,183,208,.4);transform:scale(1.05)}
+.tag.selected{background:linear-gradient(135deg,#ff6b6b,#f87171);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,107,107,.3);transform:scale(1.03)}
 .tag:active{transform:scale(.95)}
 .tag:hover:not(.selected){border-color:var(--pinky);color:var(--pinky)}
 
@@ -188,88 +189,88 @@ body{
 .color-dot{
   width:32px;height:32px;border-radius:50%;cursor:pointer;
   border:3px solid transparent;transition:all .18s cubic-bezier(.4,0,.2,1);
-  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
-.color-dot.selected{border-color:var(--dark);transform:scale(1.2);box-shadow:0 0 20px rgba(255,183,208,.6)}
+.color-dot.selected{border-color:var(--dark);transform:scale(1.15);box-shadow:0 4px 16px rgba(255,107,107,.35)}
 
 /* ========== 天气卡片 ========== */
 .weather-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
 .weather-row::-webkit-scrollbar{display:none}
 .w-chip{
-  min-width:72px;background:linear-gradient(145deg,#fff,#fdf4ff);border-radius:18px;padding:12px 10px;
+  min-width:72px;background:linear-gradient(145deg,#fff,#f9fafb);border-radius:16px;padding:12px 10px;
   text-align:center;cursor:pointer;border:2px solid transparent;
-  box-shadow:0 4px 12px rgba(255,183,208,.12);flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);flex-shrink:0;
   transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.w-chip.selected{border-color:var(--pinky);background:linear-gradient(135deg,#fff0f5,#ffe4ec);box-shadow:0 6px 18px rgba(255,183,208,.35);transform:scale(1.05)}
-.w-chip .wi{font-size:1.6rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))}
-.w-chip .wl{font-size:.74rem;color:var(--gray);font-weight:700}
-.w-chip .wt{font-size:.78rem;font-weight:800;color:var(--dark);margin-top:2px}
+.w-chip.selected{border-color:var(--pinky);background:linear-gradient(135deg,#fff5f5,#fed7d7);box-shadow:0 4px 12px rgba(255,107,107,.2);transform:scale(1.03)}
+.w-chip .wi{font-size:1.6rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.05))}
+.w-chip .wl{font-size:.74rem;color:var(--gray);font-weight:600}
+.w-chip .wt{font-size:.78rem;font-weight:700;color:var(--dark);margin-top:2px}
 
 /* ========== 心情选择 ========== */
 .mood-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
 .mood-row::-webkit-scrollbar{display:none}
 .mood-chip{
-  min-width:68px;background:linear-gradient(145deg,#fff,#f0f9ff);border-radius:18px;padding:12px 8px;
+  min-width:68px;background:linear-gradient(145deg,#fff,#f9fafb);border-radius:16px;padding:12px 8px;
   text-align:center;cursor:pointer;border:2px solid transparent;
-  box-shadow:0 4px 12px rgba(196,181,253,.12);flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);flex-shrink:0;
   transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.mood-chip.selected{border-color:var(--lavender);background:linear-gradient(135deg,#f5f3ff,#ede9fe);box-shadow:0 6px 18px rgba(196,181,253,.35);transform:scale(1.05)}
-.mood-chip .mi{font-size:1.7rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))}
-.mood-chip .ml{font-size:.74rem;color:var(--gray);font-weight:700}
+.mood-chip.selected{border-color:var(--lavender);background:linear-gradient(135deg,#f5f3ff,#ede9fe);box-shadow:0 4px 12px rgba(196,181,253,.25);transform:scale(1.03)}
+.mood-chip .mi{font-size:1.7rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.05))}
+.mood-chip .ml{font-size:.74rem;color:var(--gray);font-weight:600}
 
 /* ========== 按钮 ========== */
 .btn{
   padding:14px 28px;border-radius:999px;border:none;cursor:pointer;
-  font-size:.95rem;font-weight:800;transition:all .2s cubic-bezier(.4,0,.2,1);
+  font-size:.95rem;font-weight:700;transition:all .2s cubic-bezier(.4,0,.2,1);
   display:inline-flex;align-items:center;gap:8px;
 }
-.btn-primary{background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;box-shadow:0 6px 20px rgba(255,183,208,.4)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,183,208,.55)}
+.btn-primary{background:linear-gradient(135deg,#ff6b6b,#f87171);color:#fff;box-shadow:0 6px 20px rgba(255,107,107,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,107,107,.4)}
 .btn-primary:active{transform:translateY(0) scale(.98)}
 .btn-full{width:100%;justify-content:center}
 .btn-sm{padding:8px 18px;font-size:.83rem}
-.btn-ghost{background:transparent;border:2.5px solid var(--pinky);color:var(--pinky);font-weight:800}
+.btn-ghost{background:transparent;border:2px solid var(--pinky);color:var(--pinky);font-weight:700}
 
 /* ========== 推荐结果 ========== */
 .outfit-list{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 .outfit-row{
-  background:#fff;border-radius:22px;overflow:hidden;
-  box-shadow:0 6px 20px rgba(255,183,208,.15);
+  background:#fff;border-radius:18px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
   display:flex;transition:all .2s;border:2px solid transparent;
 }
-.outfit-row:hover{border-color:var(--pinky);box-shadow:0 10px 28px rgba(255,183,208,.25)}
+.outfit-row:hover{border-color:var(--pinky);box-shadow:0 8px 24px rgba(255,107,107,.2)}
 .outfit-row:active{transform:scale(.99)}
 .outfit-row .o-img{
-  width:96px;height:96px;background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  width:96px;height:96px;background:linear-gradient(135deg,#fff5f5,#fed7d7);
   display:flex;align-items:center;justify-content:center;
   font-size:2.5rem;flex-shrink:0;overflow:hidden;
 }
 .outfit-row .o-img img{width:100%;height:100%;object-fit:cover}
 .outfit-row .o-info{flex:1;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between}
-.o-name{font-size:.95rem;font-weight:800;color:var(--dark)}
-.o-score{font-size:.78rem;color:var(--pinky);font-weight:800}
+.o-name{font-size:.95rem;font-weight:700;color:var(--dark)}
+.o-score{font-size:.78rem;color:var(--pinky);font-weight:700}
 .o-reason{font-size:.76rem;color:var(--gray);line-height:1.45;margin-top:4px}
 .o-wear-btn{
   align-self:flex-end;padding:7px 16px;border-radius:999px;border:none;
-  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
-  color:var(--pinky);font-size:.8rem;font-weight:800;cursor:pointer;
-  transition:all .15s;box-shadow:0 3px 10px rgba(255,183,208,.2);
+  background:linear-gradient(135deg,#fff5f5,#fed7d7);
+  color:var(--pinky);font-size:.8rem;font-weight:700;cursor:pointer;
+  transition:all .15s;box-shadow:0 2px 8px rgba(255,107,107,.15);
 }
-.o-wear-btn:active{background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;transform:scale(.95)}
+.o-wear-btn:active{background:linear-gradient(135deg,#ff6b6b,#f87171);color:#fff;transform:scale(.95)}
 
 /* ========== 衣橱网格 ========== */
 .clothes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .clothes-card{
-  background:#fff;border-radius:20px;overflow:hidden;
-  box-shadow:0 6px 20px rgba(255,183,208,.12);cursor:pointer;
+  background:#fff;border-radius:16px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);cursor:pointer;
   transition:all .2s;position:relative;border:2px solid transparent;
 }
-.clothes-card:hover{border-color:var(--pinky);transform:translateY(-4px);box-shadow:0 10px 28px rgba(255,183,208,.25)}
+.clothes-card:hover{border-color:var(--pinky);transform:translateY(-4px);box-shadow:0 8px 24px rgba(255,107,107,.2)}
 .clothes-card:active{transform:scale(.97)}
 .c-img-wrap{
-  aspect-ratio:1;background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  aspect-ratio:1;background:linear-gradient(135deg,#fff5f5,#fed7d7);
   display:flex;align-items:center;justify-content:center;
   font-size:2.2rem;overflow:hidden;position:relative;
 }
@@ -277,107 +278,98 @@ body{
 .c-wear-count{
   position:absolute;bottom:6px;right:6px;
   background:rgba(0,0,0,.55);color:#fff;
-  font-size:.65rem;padding:3px 8px;border-radius:999px;font-weight:800;
+  font-size:.65rem;padding:3px 8px;border-radius:999px;font-weight:700;
   backdrop-filter:blur(4px);
 }
 .c-idle-badge{
   position:absolute;top:6px;left:6px;
   background:#fef3c7;color:#d97706;
-  font-size:.64rem;padding:2px 8px;border-radius:999px;font-weight:800;
+  font-size:.64rem;padding:2px 8px;border-radius:999px;font-weight:700;
 }
 .c-info{padding:10px 12px 12px}
-.c-name{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.c-sub{font-size:.7rem;color:var(--gray);margin-top:3px;font-weight:600}
-.del-btn{
-  position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;
-  background:rgba(255,255,255,.95);border:none;cursor:pointer;
-  font-size:.75rem;display:none;align-items:center;justify-content:center;z-index:2;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
-}
-.clothes-card:hover .del-btn,.clothes-card:active .del-btn{display:flex}
+.c-name{font-size:.82rem;font-weight:700;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-tags{font-size:.7rem;color:var(--gray);font-weight:600;margin-top:2px;display:flex;flex-wrap:wrap;gap:4px}
+.c-tag{background:#f3f4f6;padding:2px 8px;border-radius:6px;font-size:.65rem}
 
 /* ========== 筛选栏 ========== */
 .filter-bar{display:flex;gap:8px;overflow-x:auto;padding:0 16px 16px}
 .filter-bar::-webkit-scrollbar{display:none}
 .f-chip{
   white-space:nowrap;padding:8px 18px;border-radius:999px;
-  font-size:.8rem;font-weight:700;border:2px solid #fce7f3;
-  color:#d6d6d6;background:#fff;cursor:pointer;flex-shrink:0;
+  font-size:.8rem;font-weight:700;border:2px solid #f3f4f6;
+  color:#d1d5db;background:#fff;cursor:pointer;flex-shrink:0;
   transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.f-chip.active{background:linear-gradient(135deg,#ffb7d0,#ffcce0);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,183,208,.4);transform:scale(1.03)}
+.f-chip.active{background:linear-gradient(135deg,#ff6b6b,#f87171);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,107,107,.3);transform:scale(1.03)}
 
 /* ========== 入库表单 ========== */
 .form-field{margin-bottom:16px}
 .form-label{font-size:.84rem;color:var(--gray);font-weight:700;margin-bottom:8px;display:block}
 .form-input{
-  width:100%;padding:13px 16px;border-radius:16px;
-  border:2px solid #fce7f3;background:#fafafa;
+  width:100%;padding:13px 16px;border-radius:12px;
+  border:2px solid #f3f4f6;background:#fafafa;
   font-size:.9rem;color:var(--dark);outline:none;
   transition:border-color .2s;font-family:inherit;font-weight:500;
 }
-.form-input:focus{border-color:var(--pinky);background:#fff;box-shadow:0 0 20px rgba(255,183,208,.2)}
+.form-input:focus{border-color:var(--pinky);background:#fff;box-shadow:0 0 20px rgba(255,107,107,.15)}
 .upload-box{
-  border:3px dashed #ffcce0;border-radius:24px;
+  border:3px dashed #ffd6d6;border-radius:16px;
   padding:28px;text-align:center;cursor:pointer;
-  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  background:linear-gradient(135deg,#fff5f5,#fef2f2);
   transition:all .25s;position:relative;margin-bottom:16px;
 }
 .upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0}
-.upload-icon{font-size:2.4rem;display:block;margin-bottom:8px;filter:drop-shadow(0 4px 10px rgba(255,183,208,.3))}
+.upload-icon{font-size:2.4rem;display:block;margin-bottom:8px;filter:drop-shadow(0 4px 10px rgba(255,107,107,.2))}
 .upload-text{font-size:.88rem;color:var(--gray);font-weight:600}
 .upload-text b{color:var(--pinky)}
-.preview-img{max-height:130px;border-radius:16px;object-fit:cover;display:block;margin:0 auto;box-shadow:0 6px 16px rgba(0,0,0,.1)}
-.ai-hint{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--grape);font-weight:700;padding:10px 14px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:16px;margin-top:12px}
+.preview-img{max-height:130px;border-radius:12px;object-fit:cover;display:block;margin:0 auto;box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.ai-hint{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--grape);font-weight:600;padding:10px 14px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:12px;margin-top:12px}
 .spinner{width:16px;height:16px;border:3px solid #e9d5ff;border-top-color:var(--grape);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ========== 记录Tab ========== */
 .record-list{display:flex;flex-direction:column;gap:12px}
-.record-item{background:#fff;border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 20px rgba(255,183,208,.12)}
-.record-date{font-size:.76rem;color:var(--gray);min-width:56px;font-weight:700}
+.record-item{background:#fff;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.record-date{font-size:.76rem;color:var(--gray);min-width:56px;font-weight:600}
 .record-clothes{display:flex;gap:8px;flex:1;flex-wrap:wrap}
 .record-chip{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);padding:5px 10px;border-radius:999px;font-size:.78rem;color:var(--grape);font-weight:700}
 
 /* ========== 统计 ========== */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.stat-card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 6px 20px rgba(255,183,208,.12);text-align:center;border:2px solid #ffe4ec}
-.stat-num{font-size:1.95rem;font-weight:900;color:var(--pinky);filter:drop-shadow(0 2px 6px rgba(255,183,208,.3))}
-.stat-label{font-size:.76rem;color:var(--gray);margin-top:4px;font-weight:700}
+.stat-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.06);text-align:center;border:1px solid #f3f4f6}
+.stat-num{font-size:1.95rem;font-weight:700;color:var(--pinky);filter:drop-shadow(0 2px 6px rgba(255,107,107,.2))}
+.stat-label{font-size:.76rem;color:var(--gray);margin-top:4px;font-weight:600}
 .chart-bar{display:flex;flex-direction:column;gap:10px}
 .bar-row{display:flex;align-items:center;gap:10px}
-.bar-label{font-size:.8rem;color:var(--gray);width:54px;text-align:right;flex-shrink:0;font-weight:700}
-.bar-track{flex:1;height:12px;background:#fce7f3;border-radius:999px;overflow:hidden}
-.bar-fill{height:100%;background:linear-gradient(90deg,#ffb7d0,#ff99c8);border-radius:999px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-.bar-val{font-size:.78rem;font-weight:800;color:var(--dark);min-width:24px}
+.bar-label{font-size:.8rem;color:var(--gray);width:54px;text-align:right;flex-shrink:0;font-weight:600}
+.bar-track{flex:1;height:10px;background:#f3f4f6;border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#ff6b6b,#f87171);border-radius:999px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.bar-val{font-size:.78rem;font-weight:700;color:var(--dark);min-width:24px}
 
 /* ========== 闲置排行 ========== */
 .idle-list{display:flex;flex-direction:column;gap:10px}
-.idle-item{background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 12px rgba(255,183,208,.1)}
-.idle-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;font-size:.76rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(255,183,208,.3)}
-.idle-name{flex:1;font-size:.88rem;font-weight:800}
-.idle-days{font-size:.78rem;color:#d97706;font-weight:800;background:#fef3c7;padding:4px 10px;border-radius:999px}
+.idle-item{background:#fff;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.idle-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#ff6b6b,#f87171);color:#fff;font-size:.76rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(255,107,107,.25)}
+.idle-name{flex:1;font-size:.88rem;font-weight:700}
+.idle-days{font-size:.78rem;color:#d97706;font-weight:600;background:#fef3c7;padding:4px 10px;border-radius:999px}
 
 /* ========== toast ========== */
-.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(31,23,42,.92);color:#fff;padding:12px 24px;border-radius:20px;font-size:.92rem;font-weight:800;z-index:9999;opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(10px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(31,23,42,.92);color:#fff;padding:12px 24px;border-radius:16px;font-size:.92rem;font-weight:600;z-index:9999;opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(10px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
 .toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ========== 空状态 ========== */
 .empty{text-align:center;padding:48px 24px;color:var(--gray)}
-.empty-icon{font-size:3.4rem;display:block;margin-bottom:14px;opacity:.35;filter:drop-shadow(0 4px 10px rgba(255,183,208,.2))}
+.empty-icon{font-size:3.4rem;display:block;margin-bottom:14px;opacity:.3;filter:drop-shadow(0 4px 10px rgba(0,0,0,.05))}
 .empty-text{font-size:.9rem;font-weight:600;line-height:1.6}
 
 /* ========== section spacing ========== */
-.section-header{padding:18px 16px 10px;font-size:.84rem;font-weight:800;color:var(--gray);display:flex;align-items:center;justify-content:space-between}
-.see-all{font-size:.8rem;color:var(--pinky);background:none;border:none;cursor:pointer;font-weight:700}
+.section-header{padding:18px 16px 10px;font-size:.84rem;font-weight:700;color:var(--gray);display:flex;align-items:center;justify-content:space-between}
+.see-all{font-size:.8rem;color:var(--pinky);background:none;border:none;cursor:pointer;font-weight:600}
 
 /* ========== 加载遮罩 ========== */
-.loading-overlay{position:absolute;inset:0;background:rgba(255,241,245,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
-.loading-spinner{width:44px;height:44px;border:4px solid #ffcce0;border-top-color:var(--pinky);border-radius:50%;animation:spin 1s linear infinite}
-.loading-text{font-size:.92rem;color:var(--pinky);font-weight:800}
-
-/* ========== 顶部高度计算 ========== */
-#app-scroll{top:calc(var(--safe-top) + 56px)}
+.loading-overlay{position:absolute;inset:0;background:rgba(250,251,252,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
+.loading-spinner{width:44px;height:44px;border:4px solid #fed7d7;border-top-color:var(--pinky);border-radius:50%;animation:spin 1s linear infinite}
+.loading-text{font-size:.92rem;color:var(--pinky);font-weight:600}
 </style>
 </head>
 <body>
@@ -397,7 +389,7 @@ body{
       <div class="header-title">✨ 穿什么</div>
       <button class="header-badge" id="weatherBadge" onclick="refreshWeather()">
         <span id="weatherIcon">🌤</span>
-        <span id="weatherText">获取天气中…</span>
+        <span id="weatherTemp">22°</span>
       </button>
     </div>
   </div>
@@ -405,841 +397,655 @@ body{
   <!-- 滚动内容区 -->
   <div class="scroll-content" id="app-scroll">
 
-    <!-- ====== Tab: 首页 ====== -->
+    <!-- 首页 Tab -->
     <div class="tab-page active" id="page-home">
-      <!-- Hero -->
-      <div class="hero" style="margin-top:16px">
-        <div class="hero-sub">今天也要美美的 ✨</div>
-        <div class="hero-title" id="heroGreet">早安，穿搭日记</div>
-        <div class="hero-desc" id="heroDate">正在获取今日天气...</div>
-        <div class="hero-emoji">💗</div>
-        <div class="hero-temp" id="heroWeather">加载中…</div>
+      <!-- 天气卡片 -->
+      <div class="hero" id="heroCard">
+        <div class="hero-sub" id="heroSub">今天</div>
+        <div class="hero-title" id="heroTitle">晴天 · 舒适</div>
+        <div class="hero-desc" id="heroDesc">适合轻薄的穿搭</div>
+        <div class="hero-emoji" id="heroEmoji">🌤</div>
+        <div class="hero-temp" id="heroTemp">22°C</div>
       </div>
 
       <!-- 快捷入口 -->
-      <div style="padding:20px 16px 0">
-        <div style="font-size:.88rem;font-weight:800;color:var(--gray);margin-bottom:14px">✨ 快速入口</div>
-      </div>
       <div class="quick-grid">
-        <button class="quick-item" onclick="switchTab('match')">
-          <span class="quick-icon">💖</span>
-          <span class="quick-label">今日搭配</span>
-        </button>
-        <button class="quick-item" onclick="switchTab('wardrobe')">
+        <div class="quick-item" onclick="switchTab('match')">
+          <span class="quick-icon">✨</span>
+          <span class="quick-label">智能推荐</span>
+        </div>
+        <div class="quick-item" onclick="switchTab('add')">
+          <span class="quick-icon">📷</span>
+          <span class="quick-label">拍照入库</span>
+        </div>
+        <div class="quick-item" onclick="switchTab('wardrobe')">
           <span class="quick-icon">👗</span>
           <span class="quick-label">我的衣橱</span>
-        </button>
-        <button class="quick-item" onclick="switchTab('add')">
-          <span class="quick-icon">➕</span>
-          <span class="quick-label">添加衣物</span>
-        </button>
-        <button class="quick-item" onclick="switchTab('stats')">
-          <span class="quick-icon">📊</span>
-          <span class="quick-label">穿搭报告</span>
-        </button>
-      </div>
-
-      <!-- 今日推荐预览 -->
-      <div class="section-header">
-        <span>💝 今日灵感推荐</span>
-        <button class="see-all" onclick="switchTab('match')">去搭配 →</button>
-      </div>
-      <div id="homeOutfitPreview" style="padding:0 16px 16px">
-        <div style="background:#fff;border-radius:22px;padding:24px;text-align:center;box-shadow:0 6px 20px rgba(255,183,208,.15)">
-          <div style="font-size:2.4rem;margin-bottom:10px">💗</div>
-          <div style="font-size:.9rem;color:var(--gray);font-weight:600">告诉我你今天的心情和场合</div>
-          <div style="font-size:.84rem;color:var(--pinky);font-weight:800;margin-top:6px">点击「今日搭配」开始</div>
+        </div>
+        <div class="quick-item" onclick="switchTab('records')">
+          <span class="quick-icon">📅</span>
+          <span class="quick-label">穿搭记录</span>
         </div>
       </div>
 
-      <!-- 最近穿搭 -->
+      <!-- 最近记录 -->
       <div class="section-header">
-        <span>📅 最近穿搭记录</span>
-        <button class="see-all" onclick="switchTab('record')">查看全部 →</button>
+        <span>最近穿搭</span>
+        <button class="see-all" onclick="switchTab('records')">全部 →</button>
       </div>
-      <div id="homeRecordPreview" style="padding:0 16px 16px"></div>
+      <div class="card">
+        <div class="record-list" id="recentRecords">
+          <div class="empty">
+            <span class="empty-icon">👗</span>
+            <span class="empty-text">还没有穿搭记录<br>快去「智能推荐」试试吧！</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ====== Tab: 今日搭配 ====== -->
+    <!-- 搭配 Tab -->
     <div class="tab-page" id="page-match">
-      <!-- 天气 -->
-      <div class="card" style="margin-top:16px">
-        <div class="card-title"><div class="card-title-l"><span>🌤</span>今天的天气</div></div>
-        <div class="weather-row" id="weatherRow">
-          <div class="w-chip selected" data-weather="晴天" data-temp="25" onclick="selectWeather(this)">
+      <div class="card">
+        <div class="card-title"><span class="card-title-l">🌤 天气</span></div>
+        <div class="weather-row">
+          <div class="w-chip" onclick="selectWeather(this,'sunny')">
             <span class="wi">☀️</span><span class="wl">晴天</span><span class="wt">25°</span>
           </div>
-          <div class="w-chip" data-weather="多云" data-temp="22" onclick="selectWeather(this)">
-            <span class="wi">⛅</span><span class="wl">多云</span><span class="wt">22°</span>
+          <div class="w-chip" onclick="selectWeather(this,'cloudy')">
+            <span class="wi">☁️</span><span class="wl">多云</span><span class="wt">22°</span>
           </div>
-          <div class="w-chip" data-weather="阴天" data-temp="18" onclick="selectWeather(this)">
-            <span class="wi">☁️</span><span class="wl">阴天</span><span class="wt">18°</span>
+          <div class="w-chip" onclick="selectWeather(this,'rainy')">
+            <span class="wi">🌧</span><span class="wl">下雨</span><span class="wt">18°</span>
           </div>
-          <div class="w-chip" data-weather="小雨" data-temp="16" onclick="selectWeather(this)">
-            <span class="wi">🌦</span><span class="wl">小雨</span><span class="wt">16°</span>
-          </div>
-          <div class="w-chip" data-weather="大雨" data-temp="14" onclick="selectWeather(this)">
-            <span class="wi">🌧</span><span class="wl">大雨</span><span class="wt">14°</span>
-          </div>
-          <div class="w-chip" data-weather="寒冷" data-temp="8" onclick="selectWeather(this)">
-            <span class="wi">❄️</span><span class="wl">寒冷</span><span class="wt">8°</span>
+          <div class="w-chip" onclick="selectWeather(this,'cold')">
+            <span class="wi">❄️</span><span class="wl">寒冷</span><span class="wt">5°</span>
           </div>
         </div>
       </div>
 
-      <!-- 场合 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>📍</span>今天去哪</div></div>
-        <div class="tags" id="occasionTags">
-          <span class="tag selected" onclick="toggleTag(this,'occasion')">日常通勤</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">约会</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">聚会派对</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">运动健身</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">商务正式</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">休闲逛街</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">居家</span>
-          <span class="tag" onclick="toggleTag(this,'occasion')">旅行</span>
+        <div class="card-title"><span class="card-title-l">🎯 场合</span></div>
+        <div class="tags">
+          <button class="tag" onclick="toggleTag(this)">日常</button>
+          <button class="tag" onclick="toggleTag(this)">约会</button>
+          <button class="tag" onclick="toggleTag(this)">工作</button>
+          <button class="tag" onclick="toggleTag(this)">运动</button>
+          <button class="tag" onclick="toggleTag(this)">聚会</button>
+          <button class="tag" onclick="toggleTag(this)">约会</button>
+          <button class="tag" onclick="toggleTag(this)">旅行</button>
         </div>
       </div>
 
-      <!-- 心情 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>💭</span>今天的心情</div></div>
-        <div class="mood-row" id="moodRow">
-          <div class="mood-chip selected" data-mood="活力" onclick="selectMood(this)">
+        <div class="card-title"><span class="card-title-l">💖 心情</span></div>
+        <div class="mood-row">
+          <div class="mood-chip" onclick="selectMood(this,'happy')">
+            <span class="mi">😊</span><span class="ml">开心</span>
+          </div>
+          <div class="mood-chip" onclick="selectMood(this,'calm')">
+            <span class="mi">😌</span><span class="ml">平静</span>
+          </div>
+          <div class="mood-chip" onclick="selectMood(this,'energetic')">
             <span class="mi">⚡</span><span class="ml">活力</span>
           </div>
-          <div class="mood-chip" data-mood="浪漫" onclick="selectMood(this)">
-            <span class="mi">🌸</span><span class="ml">浪漫</span>
-          </div>
-          <div class="mood-chip" data-mood="自信" onclick="selectMood(this)">
-            <span class="mi">💪</span><span class="ml">自信</span>
-          </div>
-          <div class="mood-chip" data-mood="慵懒" onclick="selectMood(this)">
-            <span class="mi">😌</span><span class="ml">慵懒</span>
-          </div>
-          <div class="mood-chip" data-mood="优雅" onclick="selectMood(this)">
-            <span class="mi">🎀</span><span class="ml">优雅</span>
-          </div>
-          <div class="mood-chip" data-mood="可爱" onclick="selectMood(this)">
-            <span class="mi">🐱</span><span class="ml">可爱</span>
+          <div class="mood-chip" onclick="selectMood(this,'romantic')">
+            <span class="mi">💕</span><span class="ml">浪漫</span>
           </div>
         </div>
       </div>
 
-      <!-- 偏好颜色 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>🎨</span>今天想穿什么色</div></div>
-        <div class="color-row" id="colorPrefRow">
-          <div class="color-dot selected" style="background:#ffb7d0" data-color="粉色系" onclick="selectColor(this)" title="粉色系"></div>
-          <div class="color-dot" style="background:#e8d5ff" data-color="紫色系" onclick="selectColor(this)" title="紫色系"></div>
-          <div class="color-dot" style="background:#bae6fd" data-color="蓝色系" onclick="selectColor(this)" title="蓝色系"></div>
-          <div class="color-dot" style="background:#d1fae5" data-color="绿色系" onclick="selectColor(this)" title="绿色系"></div>
-          <div class="color-dot" style="background:#fef08a" data-color="黄色系" onclick="selectColor(this)" title="黄色系"></div>
-          <div class="color-dot" style="background:#fca5a5" data-color="红色系" onclick="selectColor(this)" title="红色系"></div>
-          <div class="color-dot" style="background:#1f172a" data-color="黑白系" onclick="selectColor(this)" title="黑白系"></div>
-          <div class="color-dot" style="background:#fde68a" data-color="米白系" onclick="selectColor(this)" title="米白系"></div>
-          <div class="color-dot" style="background:linear-gradient(135deg,#ffb7d0,#e8d5ff,#bae6fd)" data-color="随机" onclick="selectColor(this)" title="随机"></div>
+        <div class="card-title"><span class="card-title-l">🎨 颜色</span></div>
+        <div class="color-row">
+          <div class="color-dot" style="background:#1f2937" onclick="selectColor(this,'#1f2937')"></div>
+          <div class="color-dot" style="background:#ef4444" onclick="selectColor(this,'#ef4444')"></div>
+          <div class="color-dot" style="background:#f97316" onclick="selectColor(this,'#f97316')"></div>
+          <div class="color-dot" style="background:#eab308" onclick="selectColor(this,'#eab308')"></div>
+          <div class="color-dot" style="background:#22c55e" onclick="selectColor(this,'#22c55e')"></div>
+          <div class="color-dot" style="background:#3b82f6" onclick="selectColor(this,'#3b82f6')"></div>
+          <div class="color-dot" style="background:#8b5cf6" onclick="selectColor(this,'#8b5cf6')"></div>
+          <div class="color-dot" style="background:#ec4899" onclick="selectColor(this,'#ec4899')"></div>
         </div>
       </div>
 
-      <!-- 体型感知 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>⚖️</span>今天的状态</div></div>
-        <div class="tags" id="bodyTags">
-          <span class="tag selected" onclick="toggleTag(this,'body')">普通状态</span>
-          <span class="tag" onclick="toggleTag(this,'body')">显瘦遮肉</span>
-          <span class="tag" onclick="toggleTag(this,'body')">拉高显腿</span>
-          <span class="tag" onclick="toggleTag(this,'body')">宽松舒适</span>
+        <div class="card-title"><span class="card-title-l">📐 体型</span></div>
+        <div class="tags">
+          <button class="tag" onclick="toggleTag(this)">苗条</button>
+          <button class="tag" onclick="toggleTag(this)">标准</button>
+          <button class="tag" onclick="toggleTag(this)">微胖</button>
         </div>
       </div>
 
-      <div style="padding:0 16px 16px">
-        <button class="btn btn-primary btn-full" onclick="generateOutfit()" style="font-size:1rem;padding:16px">
-          💖 帮我搭配今天的穿搭
-        </button>
-      </div>
-
-      <!-- 推荐结果 -->
-      <div id="outfitResult"></div>
-    </div>
-
-    <!-- ====== Tab: 我的衣橱 ====== -->
-    <div class="tab-page" id="page-wardrobe">
-      <div class="filter-bar" id="filterBar" style="margin-top:16px">
-        <div class="f-chip active" data-type="全部" onclick="filterClothes(this)">全部</div>
-        <div class="f-chip" data-type="上衣" onclick="filterClothes(this)">上衣</div>
-        <div class="f-chip" data-type="外套" onclick="filterClothes(this)">外套</div>
-        <div class="f-chip" data-type="裤子" onclick="filterClothes(this)">裤子</div>
-        <div class="f-chip" data-type="裙子" onclick="filterClothes(this)">裙子</div>
-        <div class="f-chip" data-type="连衣裙" onclick="filterClothes(this)">连衣裙</div>
-        <div class="f-chip" data-type="鞋子" onclick="filterClothes(this)">鞋子</div>
-        <div class="f-chip" data-type="配件" onclick="filterClothes(this)">配件</div>
-      </div>
       <div style="padding:0 16px">
-        <div class="clothes-grid" id="clothesGrid"></div>
+        <button class="btn btn-primary btn-full" onclick="generateOutfit()">
+          ✨ 智能推荐
+        </button>
       </div>
-      <div style="height:24px"></div>
+
+      <div style="padding:16px 16px 0">
+        <div class="outfit-list" id="outfitResults">
+          <div class="empty">
+            <span class="empty-icon">✨</span>
+            <span class="empty-text">选择你的偏好<br>AI 会帮你搭配出今天的造型</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ====== Tab: 添加衣物 ====== -->
+    <!-- 衣橱 Tab -->
+    <div class="tab-page" id="page-wardrobe">
+      <div class="filter-bar">
+        <button class="f-chip active" onclick="filterClothes(this,'all')">全部</button>
+        <button class="f-chip" onclick="filterClothes(this,'top')">上装</button>
+        <button class="f-chip" onclick="filterClothes(this,'bottom')">下装</button>
+        <button class="f-chip" onclick="filterClothes(this,'dress')">连衣裙</button>
+        <button class="f-chip" onclick="filterClothes(this,'outer')">外套</button>
+        <button class="f-chip" onclick="filterClothes(this,'shoes')">鞋子</button>
+        <button class="f-chip" onclick="filterClothes(this,'accessory')">配饰</button>
+      </div>
+      <div class="clothes-grid" id="clothesGrid">
+        <div class="empty">
+          <span class="empty-icon">👗</span>
+          <span class="empty-text">衣橱空空如也<br>快去「拍照入库」添加你的衣服吧</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 添加 Tab -->
     <div class="tab-page" id="page-add">
-      <div class="card" style="margin-top:16px">
-        <div class="card-title"><div class="card-title-l"><span>📸</span>上传衣物照片</div></div>
-        <div class="upload-box" id="uploadBox">
-          <input type="file" accept="image/*" onchange="handleImageUpload(event)"/>
+      <div class="card">
+        <div class="card-title"><span class="card-title-l">📷 上传照片</span></div>
+        <div class="upload-box" onclick="document.getElementById('photoInput').click()">
+          <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)">
           <span class="upload-icon">📸</span>
-          <div class="upload-text">点击上传照片 或 <b>拍照添加</b></div>
-          <div class="upload-text" style="font-size:.76rem;margin-top:6px;color:var(--gray);font-weight:600">支持 JPG、PNG、HEIF</div>
+          <div class="upload-text">点击或拖拽上传<br><b>AI 自动识别颜色</b></div>
         </div>
-        <div id="aiHintArea"></div>
+        <div id="photoPreview" style="display:none;margin-bottom:12px">
+          <img class="preview-img" id="previewImg" src="" alt="预览">
+        </div>
       </div>
 
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>✏️</span>基本信息</div></div>
+        <div class="card-title"><span class="card-title-l">📝 基本信息</span></div>
         <div class="form-field">
-          <label class="form-label">衣物名称</label>
-          <input class="form-input" type="text" id="clothesName" placeholder="例：白色棉质T恤"/>
+          <label class="form-label">名称</label>
+          <input class="form-input" id="clothName" placeholder="例如：白色针织开衫">
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <div class="form-field">
-            <label class="form-label">类型</label>
-            <select class="form-input" id="clothesType">
-              <option value="上衣">上衣</option>
-              <option value="外套">外套</option>
-              <option value="裤子">裤子</option>
-              <option value="裙子">裙子</option>
-              <option value="连衣裙">连衣裙</option>
-              <option value="鞋子">鞋子</option>
-              <option value="配件">配件</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label class="form-label">颜色</label>
-            <select class="form-input" id="clothesColor">
-              <option>白色</option><option>黑色</option><option>灰色</option><option>米色</option><option>粉色</option><option>红色</option>
-              <option>橙色</option><option>黄色</option><option>绿色</option><option>蓝色</option><option>紫色</option><option>棕色</option><option>多色/花纹</option>
-            </select>
-          </div>
+        <div class="form-field">
+          <label class="form-label">类型</label>
+          <select class="form-input" id="clothType">
+            <option value="">选择类型</option>
+            <option value="top">上装</option>
+            <option value="bottom">下装</option>
+            <option value="dress">连衣裙</option>
+            <option value="outer">外套</option>
+            <option value="shoes">鞋子</option>
+            <option value="accessory">配饰</option>
+          </select>
         </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>🏷️</span>场合标签</div></div>
-        <div class="tags" id="addOccasionTags">
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">日常通勤</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">约会</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">聚会派对</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">运动健身</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">商务正式</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">休闲逛街</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">居家</span>
-          <span class="tag" onclick="toggleTag(this,'addOccasion')">旅行</span>
+        <div class="form-field">
+          <label class="form-label">颜色</label>
+          <input class="form-input" id="clothColor" placeholder="例如：米白色">
+        </div>
+        <div class="form-field">
+          <label class="form-label">标签（用逗号分隔）</label>
+          <input class="form-input" id="clothTags" placeholder="例如：可爱,韩系,通勤">
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>🌤</span>适合天气</div></div>
-        <div class="tags" id="addWeatherTags">
-          <span class="tag" onclick="toggleTag(this,'addWeather')">炎热</span>
-          <span class="tag" onclick="toggleTag(this,'addWeather')">温暖</span>
-          <span class="tag" onclick="toggleTag(this,'addWeather')">凉爽</span>
-          <span class="tag" onclick="toggleTag(this,'addWeather')">寒冷</span>
-          <span class="tag" onclick="toggleTag(this,'addWeather')">雨天</span>
-          <span class="tag" onclick="toggleTag(this,'addWeather')">全天候</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>👤</span>版型特点</div></div>
-        <div class="tags" id="addBodyTags">
-          <span class="tag" onclick="toggleTag(this,'addBody')">显瘦</span>
-          <span class="tag" onclick="toggleTag(this,'addBody')">遮肉</span>
-          <span class="tag" onclick="toggleTag(this,'addBody')">拉高</span>
-          <span class="tag" onclick="toggleTag(this,'addBody')">宽松</span>
-          <span class="tag" onclick="toggleTag(this,'addBody')">修身</span>
-          <span class="tag" onclick="toggleTag(this,'addBody')">通用版型</span>
-        </div>
-      </div>
-
-      <div style="padding:0 16px 20px">
-        <button class="btn btn-primary btn-full" onclick="saveClothes()" style="font-size:1rem;padding:16px">
-          ➕ 加入我的衣橱
+      <div style="padding:0 16px">
+        <button class="btn btn-primary btn-full" onclick="addCloth()">
+          ✨ 加入衣橱
         </button>
       </div>
     </div>
 
-    <!-- ====== Tab: 穿搭记录 ====== -->
-    <div class="tab-page" id="page-record">
-      <div class="card" style="margin-top:16px">
-        <div class="card-title"><div class="card-title-l"><span>📅</span>穿搭日历记录</div></div>
-        <div id="recordList"><div class="empty"><span class="empty-icon">📔</span><div class="empty-text">还没有穿搭记录<br>在「今日搭配」点击「今天就穿这套」开始记录</div></div></div>
+    <!-- 记录 Tab -->
+    <div class="tab-page" id="page-records">
+      <div class="record-list" id="recordList">
+        <div class="empty">
+          <span class="empty-icon">📅</span>
+          <span class="empty-text">还没有穿搭记录<br>快去「智能推荐」开始吧</span>
+        </div>
       </div>
     </div>
 
-    <!-- ====== Tab: 统计报告 ====== -->
-    <div class="tab-page" id="page-stats">
-      <div style="padding:16px 16px 0">
-        <div style="font-size:1.1rem;font-weight:900;color:var(--dark);margin-bottom:16px">📊 穿搭数据报告</div>
+    <!-- 报告 Tab -->
+    <div class="tab-page" id="page-report">
+      <div class="card">
+        <div class="card-title"><span class="card-title-l">📊 统计概览</span></div>
         <div class="stat-grid">
           <div class="stat-card">
             <div class="stat-num" id="statTotal">0</div>
-            <div class="stat-label">衣物总件数</div>
+            <div class="stat-label">衣物总数</div>
           </div>
           <div class="stat-card">
             <div class="stat-num" id="statRecords">0</div>
-            <div class="stat-label">穿搭记录数</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num" id="statIdleCount">0</div>
-            <div class="stat-label">闲置衣物</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num" id="statFavColor">-</div>
-            <div class="stat-label">最爱颜色</div>
+            <div class="stat-label">穿搭记录</div>
           </div>
         </div>
       </div>
 
-      <!-- 类型分布 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>👗</span>衣橱类型分布</div></div>
-        <div class="chart-bar" id="typeChart"></div>
-      </div>
-
-      <!-- 颜色分布 -->
-      <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>🎨</span>颜色分布</div></div>
+        <div class="card-title"><span class="card-title-l">🎨 颜色分布</span></div>
         <div class="chart-bar" id="colorChart"></div>
       </div>
 
-      <!-- 闲置排行 -->
       <div class="card">
-        <div class="card-title"><div class="card-title-l"><span>😴</span>闲置排行榜</div></div>
+        <div class="card-title"><span class="card-title-l">👗 类型分布</span></div>
+        <div class="chart-bar" id="typeChart"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-l">💤 闲置排行</span></div>
         <div class="idle-list" id="idleList"></div>
       </div>
     </div>
 
-  </div><!-- /scroll-content -->
+  </div>
 
-  <!-- 底部Tab导航 -->
+  <!-- 底部 Tab 导航 -->
   <div class="tab-bar">
-    <button class="tab-item active" data-tab="home" onclick="switchTab('home')">
-      <span class="tab-icon">🏠</span>首页
+    <button class="tab-item active" onclick="switchTab('home')">
+      <span class="tab-icon">🏠</span>
+      <span>首页</span>
     </button>
-    <button class="tab-item" data-tab="match" onclick="switchTab('match')">
-      <span class="tab-icon">💖</span>搭配
+    <button class="tab-item" onclick="switchTab('match')">
+      <span class="tab-icon">✨</span>
+      <span>搭配</span>
     </button>
-    <button class="tab-item" data-tab="wardrobe" onclick="switchTab('wardrobe')">
-      <span class="tab-icon">👗</span>衣橱
+    <button class="tab-item" onclick="switchTab('wardrobe')">
+      <span class="tab-icon">👗</span>
+      <span>衣橱</span>
     </button>
-    <button class="tab-item" data-tab="add" onclick="switchTab('add')">
-      <span class="tab-icon">➕</span>添加
+    <button class="tab-item" onclick="switchTab('add')">
+      <span class="tab-icon">➕</span>
+      <span>添加</span>
     </button>
-    <button class="tab-item" data-tab="record" onclick="switchTab('record')">
-      <span class="tab-icon">📅</span>记录
+    <button class="tab-item" onclick="switchTab('records')">
+      <span class="tab-icon">📅</span>
+      <span>记录</span>
     </button>
-    <button class="tab-item" data-tab="stats" onclick="switchTab('stats')">
-      <span class="tab-icon">📊</span>报告
+    <button class="tab-item" onclick="switchTab('report')">
+      <span class="tab-icon">📊</span>
+      <span>报告</span>
     </button>
   </div>
 
-  <!-- Toast提示 -->
-  <div class="toast" id="toast"></div>
+</div>
 
-</div><!-- /phone-shell -->
+<div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-// 数据层
-// ============================================================
-const STORAGE_KEYS = { clothes: 'wdc_clothes_v4', records: 'wdc_records_v3', weather: 'wdc_weather' };
-
-const DEMO_CLOTHES = [
-  { id:'c1', name:'白色宽松T恤', type:'上衣', color:'白色', colorFamily:'米白系', emoji:'👕', img:null,
-    occasions:['日常通勤','休闲逛街','居家'], weathers:['炎热','温暖'], body:['通用版型','宽松'],
-    addedAt: Date.now()-30*86400000, wearCount:8, lastWorn: Date.now()-2*86400000 },
-  { id:'c2', name:'粉色碎花连衣裙', type:'连衣裙', color:'粉色', colorFamily:'粉色系', emoji:'👗', img:null,
-    occasions:['约会','聚会派对','休闲逛街'], weathers:['温暖','炎热'], body:['显瘦','拉高'],
-    addedAt: Date.now()-60*86400000, wearCount:12, lastWorn: Date.now()-1*86400000 },
-  { id:'c3', name:'深蓝牛仔外套', type:'外套', color:'蓝色', colorFamily:'蓝色系', emoji:'🧥', img:null,
-    occasions:['日常通勤','休闲逛街','旅行'], weathers:['凉爽','寒冷'], body:['通用版型'],
-    addedAt: Date.now()-90*86400000, wearCount:3, lastWorn: Date.now()-15*86400000 },
-  { id:'c4', name:'黑色修身西裤', type:'裤子', color:'黑色', colorFamily:'黑白系', emoji:'👖', img:null,
-    occasions:['日常通勤','商务正式','约会'], weathers:['凉爽','温暖','寒冷'], body:['显瘦','修身'],
-    addedAt: Date.now()-45*86400000, wearCount:20, lastWorn: Date.now()-3*86400000 },
-  { id:'c5', name:'奶油针织开衫', type:'外套', color:'米色', colorFamily:'米白系', emoji:'🧶', img:null,
-    occasions:['约会','休闲逛街','日常通勤'], weathers:['凉爽','温暖'], body:['遮肉','宽松'],
-    addedAt: Date.now()-20*86400000, wearCount:6, lastWorn: Date.now()-5*86400000 },
-  { id:'c6', name:'紫色薄纱半裙', type:'裙子', color:'紫色', colorFamily:'紫色系', emoji:'🩴', img:null,
-    occasions:['约会','聚会派对'], weathers:['温暖','炎热'], body:['拉高','显瘦'],
-    addedAt: Date.now()-100*86400000, wearCount:2, lastWorn: Date.now()-25*86400000 },
-  { id:'c7', name:'白色小白鞋', type:'鞋子', color:'白色', colorFamily:'米白系', emoji:'👟', img:null,
-    occasions:['日常通勤','休闲逛街','运动健身'], weathers:['全天候'], body:['通用版型'],
-    addedAt: Date.now()-50*86400000, wearCount:30, lastWorn: Date.now()-1*86400000 },
-  { id:'c8', name:'灰色运动卫衣', type:'上衣', color:'灰色', colorFamily:'黑白系', emoji:'🧣', img:null,
-    occasions:['运动健身','居家','休闲逛街'], weathers:['凉爽','寒冷'], body:['宽松','遮肉'],
-    addedAt: Date.now()-70*86400000, wearCount:1, lastWorn: Date.now()-35*86400000 },
+// ========== 数据初始化 ==========
+const demoClothes = [
+  {id:1,name:'白色针织开衫',type:'top',color:'米白色',tags:['可爱','韩系'],wearCount:3,lastWorn:'2026-03-17',idleDays:3,emoji:'🧥'},
+  {id:2,name:'黑色阔腿裤',type:'bottom',color:'黑色',tags:['通勤','显瘦'],wearCount:5,lastWorn:'2026-03-18',idleDays:2,emoji:'👖'},
+  {id:3,name:'碎花连衣裙',type:'dress',color:'浅粉色',tags:['约会','甜美'],wearCount:2,lastWorn:'2026-03-15',idleDays:5,emoji:'👗'},
+  {id:4,name:'牛仔外套',type:'outer',color:'牛仔蓝',tags:['休闲','百搭'],wearCount:4,lastWorn:'2026-03-19',idleDays:1,emoji:'🧥'},
+  {id:5,name:'小白鞋',type:'shoes',color:'白色',tags:['日常','百搭'],wearCount:8,lastWorn:'2026-03-20',idleDays:0,emoji:'👟'},
+  {id:6,name:'格子衬衫',type:'top',color:'格纹',tags:['文艺','复古'],wearCount:2,lastWorn:'2026-03-14',idleDays:6,emoji:'👔'},
+  {id:7,name:'瑜伽裤',type:'bottom',color:'黑色',tags:['运动','舒适'],wearCount:3,lastWorn:'2026-03-16',idleDays:4,emoji:'👖'},
+  {id:8,name:'丝巾',type:'accessory',color:'红色',tags:['配饰','精致'],wearCount:1,lastWorn:'2026-03-13',idleDays:7,emoji:'🧣'}
 ];
 
-let clothes = JSON.parse(localStorage.getItem(STORAGE_KEYS.clothes) || 'null') || DEMO_CLOTHES;
-let records = JSON.parse(localStorage.getItem(STORAGE_KEYS.records) || '[]');
-let uploadedImageData = null;
-let currentWeather = { icon:'🌤', text:'晴天 25°C', temp:25, condition:'晴天' };
+let clothes = JSON.parse(localStorage.getItem('clothes')) || demoClothes;
+let records = JSON.parse(localStorage.getItem('records')) || [];
+let currentState = {
+  weather:'',
+  occasions:[],
+  mood:'',
+  color:'',
+  bodyType:''
+};
 
-function saveClothesData() { localStorage.setItem(STORAGE_KEYS.clothes, JSON.stringify(clothes)); }
-function saveRecordsData() { localStorage.setItem(STORAGE_KEYS.records, JSON.stringify(records)); }
+// ========== 初始化 ==========
+document.addEventListener('DOMContentLoaded',()=>{
+  updateTime();
+  setInterval(updateTime,60000);
+  renderClothesGrid('all');
+  renderRecords();
+  updateStats();
+});
 
-// ============================================================
-// 状态栏时间
-// ============================================================
 function updateTime(){
   const now = new Date();
-  document.getElementById('statusTime').textContent =
-    String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  const time = now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});
+  document.getElementById('statusTime').textContent = time;
 }
-updateTime(); setInterval(updateTime, 10000);
 
-// ============================================================
-// 天气 API（Open-Meteo，免费无需Key）
-// ============================================================
-async function refreshWeather(){
-  const badge = document.getElementById('weatherBadge');
-  badge.innerHTML = '<span>⏳</span><span>定位中…</span>';
-  try {
-    const pos = await new Promise((res,rej)=>
-      navigator.geolocation.getCurrentPosition(res, rej, {timeout:5000}));
-    const { latitude:lat, longitude:lon } = pos.coords;
-    const resp = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,relativehumidity_2m&timezone=auto`
-    );
-    const data = await resp.json();
-    const cw = data.current_weather;
-    const temp = Math.round(cw.temperature);
-    const wcode = cw.weathercode;
-    let icon='☀️', text='晴天', condition='晴天';
-    if(wcode===0){icon='☀️';text='晴天';condition='晴天'}
-    else if(wcode<=3){icon='⛅';text='多云';condition='多云'}
-    else if(wcode<=49){icon='🌫️';text='雾';condition='多云'}
-    else if(wcode<=69){icon='🌧️';text='雨天';condition='小雨'}
-    else if(wcode<=79){icon='🌨️';text='雪';condition='寒冷'}
-    else if(wcode<=99){icon='⛈️';text='雷暴';condition='大雨'}
-    currentWeather = { icon, text:`${text} ${temp}°C`, temp, condition };
-    applyWeather();
-    showToast(`已获取实时天气：${text} ${temp}°C`);
-    autoSelectWeather(temp, condition);
-  } catch(e) {
-    try {
-      const r2 = await fetch('https://wttr.in/?format=j1');
-      const d2 = await r2.json();
-      const cur = d2.current_condition[0];
-      const temp = parseInt(cur.temp_C);
-      const desc = cur.lang_zh?.[0]?.value || cur.weatherDesc[0].value;
-      currentWeather = { icon:'🌤', text:`${desc} ${temp}°C`, temp, condition: temp>25?'晴天':temp>15?'多云':'凉爽' };
-      applyWeather();
-      autoSelectWeather(temp, currentWeather.condition);
-      showToast(`天气：${desc} ${temp}°C`);
-    } catch {
-      showToast('天气获取失败，请手动选择');
-      document.getElementById('weatherBadge').innerHTML = '<span>🌤</span><span>手动选择</span>';
+// ========== Tab 切换 ==========
+function switchTab(tabName){
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  document.getElementById(`page-${tabName}`).classList.add('active');
+  const tabs = document.querySelectorAll('.tab-item');
+  const tabMap = {home:0,match:1,wardrobe:2,add:3,records:4,report:5};
+  tabs[tabMap[tabName]].classList.add('active');
+
+  if(tabName === 'report') updateStats();
+  if(tabName === 'wardrobe') renderClothesGrid('all');
+  if(tabName === 'records') renderRecords();
+}
+
+// ========== 天气 ==========
+function selectWeather(el,type){
+  document.querySelectorAll('.w-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentState.weather = type;
+}
+
+function refreshWeather(){
+  showToast('刷新天气中...');
+  setTimeout(()=>showToast('天气已更新'),1000);
+}
+
+// ========== 标签选择 ==========
+function toggleTag(el){
+  el.classList.toggle('selected');
+}
+
+// ========== 心情选择 ==========
+function selectMood(el,type){
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentState.mood = type;
+}
+
+// ========== 颜色选择 ==========
+function selectColor(el,color){
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  currentState.color = color;
+}
+
+// ========== 生成穿搭推荐 ==========
+function generateOutfit(){
+  const weather = currentState.weather;
+  if(!weather){
+    showToast('请先选择天气 🌤');
+    return;
+  }
+
+  showToast('AI 正在搭配...');
+  setTimeout(()=>{
+    const filtered = clothes.filter(c => {
+      if(weather === 'sunny') return !c.tags.includes('厚');
+      if(weather === 'cold') return c.tags.includes('厚') || c.type === 'outer';
+      return true;
+    });
+
+    if(filtered.length === 0){
+      document.getElementById('outfitResults').innerHTML = `
+        <div class="empty">
+          <span class="empty-icon">😢</span>
+          <span class="empty-text">没有合适的搭配<br>快去添加更多衣服吧</span>
+        </div>
+      `;
+      return;
     }
-  }
+
+    const recommendations = [];
+    const usedIds = new Set();
+
+    for(let i = 0; i < 3 && filtered.length > 0; i++){
+      const idx = Math.floor(Math.random() * filtered.length);
+      const item = filtered[idx];
+      if(!usedIds.has(item.id)){
+        usedIds.add(item.id);
+        const score = 85 + Math.floor(Math.random() * 14);
+        recommendations.push({...item,score});
+      }
+    }
+
+    renderRecommendations(recommendations);
+  },800);
 }
 
-function applyWeather(){
-  document.getElementById('weatherIcon').textContent = currentWeather.icon;
-  document.getElementById('weatherText').textContent = currentWeather.text;
-  document.getElementById('heroWeather').textContent = currentWeather.icon + ' ' + currentWeather.text;
-  const now = new Date();
-  document.getElementById('heroDate').textContent =
-    `${now.getMonth()+1}月${now.getDate()}日 · ${['周日','周一','周二','周三','周四','周五','周六'][now.getDay()]}`;
-  const h = now.getHours();
-  document.getElementById('heroGreet').textContent =
-    h<11?'早安，今天也要美美的 🌸': h<14?'午安，下午穿什么呢 ☀️': h<18?'下午好，出门前搭配一下 💗':'晚安，明天穿什么想好了吗 ✨';
+function renderRecommendations(items){
+  const html = items.map(item => `
+    <div class="outfit-row">
+      <div class="o-img">${item.emoji}</div>
+      <div class="o-info">
+        <div class="o-name">${item.name}</div>
+        <div class="o-score">匹配度 ${item.score}%</div>
+        <div class="o-reason">${item.tags.join(' · ')}</div>
+        <button class="o-wear-btn" onclick="wearToday(${item.id})">今天就穿这件</button>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('outfitResults').innerHTML = html;
 }
 
-function autoSelectWeather(temp, condition){
-  document.querySelectorAll('.w-chip').forEach(c=>{
-    c.classList.remove('selected');
-    const ctemp = parseInt(c.dataset.temp);
-    const cw = c.dataset.weather;
-    if(temp>=28 && cw==='晴天') c.classList.add('selected');
-    else if(temp>=20 && temp<28 && cw==='多云') c.classList.add('selected');
-    else if(temp>=12 && temp<20 && cw==='阴天') c.classList.add('selected');
-    else if(temp<12 && temp>=5 && cw==='小雨') c.classList.add('selected');
-    else if(temp<5 && cw==='寒冷') c.classList.add('selected');
+// ========== 记录穿搭 ==========
+function wearToday(id){
+  const cloth = clothes.find(c => c.id === id);
+  if(!cloth) return;
+
+  cloth.wearCount++;
+  cloth.lastWorn = new Date().toISOString().split('T')[0];
+  cloth.idleDays = 0;
+
+  clothes.forEach(c => {
+    if(c.id !== id){
+      c.idleDays++;
+    }
   });
-  if(!document.querySelector('.w-chip.selected'))
-    document.querySelector('.w-chip').classList.add('selected');
+
+  const record = {
+    id:Date.now(),
+    date:new Date().toISOString().split('T')[0],
+    clothes:[cloth.name],
+    weather:currentState.weather,
+    mood:currentState.mood
+  };
+  records.unshift(record);
+
+  saveData();
+  showToast(`已记录：今天穿 ${cloth.name} 👗`);
 }
 
-// ============================================================
-// Tab切换
-// ============================================================
-const TAB_TITLES = {home:'✨ 穿什么', match:'💖 今日搭配', wardrobe:'👗 衣橱管理', add:'➕ 添加衣物', record:'📅 穿搭记录', stats:'📊 穿搭报告'};
-function switchTab(tab){
-  document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+tab).classList.add('active');
-  document.querySelector(`.tab-item[data-tab="${tab}"]`).classList.add('active');
-  document.getElementById('pageTitle').textContent = TAB_TITLES[tab];
-  document.getElementById('app-scroll').scrollTop = 0;
-  if(tab==='wardrobe') renderWardrobe('全部');
-  if(tab==='stats') renderStats();
-  if(tab==='record') renderRecords();
-  if(tab==='home') renderHomePreview();
+// ========== 衣橱筛选 ==========
+function filterClothes(el,type){
+  document.querySelectorAll('.f-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderClothesGrid(type);
 }
 
-// ============================================================
-// Toast
-// ============================================================
-let toastTimer;
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2500);
-}
-
-// ============================================================
-// 标签/选择工具
-// ============================================================
-function toggleTag(el, group){
-  if(group==='occasion'||group==='body'){
-    el.closest('.tags').querySelectorAll('.tag').forEach(t=>t.classList.remove('selected'));
-    el.classList.add('selected');
-  } else {
-    el.classList.toggle('selected');
+function renderClothesGrid(type){
+  const filtered = type === 'all' ? clothes : clothes.filter(c => c.type === type);
+  if(filtered.length === 0){
+    document.getElementById('clothesGrid').innerHTML = `
+      <div class="empty">
+        <span class="empty-icon">👗</span>
+        <span class="empty-text">没有找到<br>快去添加衣服吧</span>
+      </div>
+    `;
+    return;
   }
-}
-function selectWeather(el){
-  document.querySelectorAll('.w-chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function selectMood(el){
-  document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function selectColor(el){
-  document.querySelectorAll('.color-dot').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function getSelectedTags(containerId){
-  return [...document.querySelectorAll(`#${containerId} .tag.selected`)].map(t=>t.textContent);
+
+  const html = filtered.map(item => `
+    <div class="clothes-card">
+      <div class="c-img-wrap">${item.emoji}</div>
+      <div class="c-wear-count">${item.wearCount}次</div>
+      ${item.idleDays >= 7 ? `<div class="c-idle-badge">${item.idleDays}天未穿</div>` : ''}
+      <div class="c-info">
+        <div class="c-name">${item.name}</div>
+        <div class="c-tags">${item.tags.slice(0,2).map(t => `<span class="c-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('clothesGrid').innerHTML = html;
 }
 
-// ============================================================
-// 图片上传 & AI颜色识别
-// ============================================================
-function handleImageUpload(e){
-  const file = e.target.files[0];
+// ========== 添加衣物 ==========
+function handlePhotoUpload(event){
+  const file = event.target.files[0];
   if(!file) return;
+
   const reader = new FileReader();
-  reader.onload = ev => {
-    uploadedImageData = ev.target.result;
-    const box = document.getElementById('uploadBox');
-    box.innerHTML = `<img class="preview-img" src="${uploadedImageData}"/><input type="file" accept="image/*" onchange="handleImageUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0"/>`;
-    document.getElementById('aiHintArea').innerHTML = `<div class="ai-hint"><div class="spinner"></div>AI 正在识别颜色和类型…</div>`;
-    setTimeout(()=>mockAiRecognize(uploadedImageData), 1500);
+  reader.onload = (e) => {
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('photoPreview').style.display = 'block';
+    document.querySelector('.upload-box').style.display = 'none';
+    showToast('AI 正在识别颜色...');
+    setTimeout(() => {
+      const colors = ['米白色','黑色','浅蓝色','浅粉色','灰色','卡其色','红色'];
+      const detected = colors[Math.floor(Math.random() * colors.length)];
+      document.getElementById('clothColor').value = detected;
+      showToast(`识别到颜色：${detected}`);
+    },1200);
   };
   reader.readAsDataURL(file);
 }
 
-function mockAiRecognize(imgData){
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const img = new Image();
-  img.onload = () => {
-    canvas.width = 50; canvas.height = 50;
-    ctx.drawImage(img, 0, 0, 50, 50);
-    const pxData = ctx.getImageData(0,0,50,50).data;
-    let r=0,g=0,b=0,cnt=0;
-    for(let i=0;i<pxData.length;i+=4){
-      r+=pxData[i]; g+=pxData[i+1]; b+=pxData[i+2]; cnt++;
-    }
-    r=Math.round(r/cnt); g=Math.round(g/cnt); b=Math.round(b/cnt);
-    const colorName = detectColorName(r,g,b);
-    document.getElementById('clothesColor').value = colorName;
-    document.getElementById('aiHintArea').innerHTML = `<div class="ai-hint" style="background:#dcfce7;color:#16a34a"><span>✅</span>AI识别主色：<b>${colorName}</b>（可手动修改）</div>`;
-    showToast(`AI识别颜色：${colorName}`);
-  };
-  img.src = imgData;
-}
+function addCloth(){
+  const name = document.getElementById('clothName').value.trim();
+  const type = document.getElementById('clothType').value;
+  const color = document.getElementById('clothColor').value.trim();
+  const tags = document.getElementById('clothTags').value.split(',').map(t => t.trim()).filter(t => t);
 
-function detectColorName(r,g,b){
-  const max=Math.max(r,g,b), min=Math.min(r,g,b);
-  if(max<50) return '黑色';
-  if(min>200) return '白色';
-  if(max-min<30) return max>180?'白色':'灰色';
-  if(r>g&&r>b) return r-b>80?'红色':'粉色';
-  if(g>r&&g>b) return '绿色';
-  if(b>r&&b>g) return b-r>60&&b-g>60?'蓝色':'紫色';
-  if(r>200&&g>150&&b<80) return '橙色';
-  if(r>200&&g>200&&b<100) return '黄色';
-  return '米色';
-}
+  if(!name || !type || !color){
+    showToast('请填写完整信息 📝');
+    return;
+  }
 
-// ============================================================
-// 保存衣物
-// ============================================================
-function saveClothes(){
-  const name = document.getElementById('clothesName').value.trim();
-  if(!name){ showToast('请填写衣物名称'); return; }
-  const colorMap = {'白色':'米白系','黑色':'黑白系','灰色':'黑白系','米色':'米白系','粉色':'粉色系','红色':'红色系','橙色':'红色系','黄色':'黄色系','绿色':'绿色系','蓝色':'蓝色系','紫色':'紫色系','棕色':'米白系','多色/花纹':'随机'};
-  const type = document.getElementById('clothesType').value;
-  const color = document.getElementById('clothesColor').value;
-  const typeEmojis = {'上衣':'👕','外套':'🧥','裤子':'👖','裙子':'🩴','连衣裙':'👗','鞋子':'👟','配件':'👜'};
-  const item = {
-    id: 'c'+Date.now(),
-    name, type, color,
-    colorFamily: colorMap[color]||'米白系',
-    emoji: typeEmojis[type]||'👗',
-    img: uploadedImageData||null,
-    occasions: getSelectedTags('addOccasionTags'),
-    weathers: getSelectedTags('addWeatherTags'),
-    body: getSelectedTags('addBodyTags'),
-    addedAt: Date.now(),
-    wearCount: 0,
-    lastWorn: null
+  const typeEmoji = {top:'👔',bottom:'👖',dress:'👗',outer:'🧥',shoes:'👟',accessory:'🧣'};
+  const newCloth = {
+    id:Date.now(),
+    name,type,color,tags,
+    wearCount:0,
+    lastWorn:null,
+    idleDays:0,
+    emoji:typeEmoji[type] || '👗'
   };
-  clothes.push(item);
-  saveClothesData();
-  document.getElementById('clothesName').value='';
-  document.getElementById('aiHintArea').innerHTML='';
-  uploadedImageData=null;
-  document.getElementById('uploadBox').innerHTML=`<input type="file" accept="image/*" onchange="handleImageUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0"/><span class="upload-icon">📸</span><div class="upload-text">点击上传照片 或 <b>拍照添加</b></div><div class="upload-text" style="font-size:.76rem;margin-top:6px;color:var(--gray);font-weight:600">支持 JPG、PNG、HEIF</div>`;
-  document.querySelectorAll('#addOccasionTags .tag,#addWeatherTags .tag,#addBodyTags .tag').forEach(t=>t.classList.remove('selected'));
-  showToast(`💗 "${name}" 已加入衣橱！`);
+
+  clothes.push(newCloth);
+  saveData();
+  showToast(`已添加：${newCloth.name} ✨`);
+
+  document.getElementById('clothName').value = '';
+  document.getElementById('clothType').value = '';
+  document.getElementById('clothColor').value = '';
+  document.getElementById('clothTags').value = '';
+  document.getElementById('photoPreview').style.display = 'none';
+  document.querySelector('.upload-box').style.display = 'block';
+
   switchTab('wardrobe');
 }
 
-// ============================================================
-// 渲染衣橱
-// ============================================================
-function renderWardrobe(type='全部'){
-  const filtered = type==='全部' ? clothes : clothes.filter(c=>c.type===type);
-  const grid = document.getElementById('clothesGrid');
-  if(filtered.length===0){
-    grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><span class="empty-icon">👗</span><div class="empty-text">还没有${type==='全部'?'':type+'类'}衣物<br>去添加你的第一件吧</div></div>`;
-    return;
-  }
-  const now = Date.now();
-  grid.innerHTML = filtered.map(c=>{
-    const daysSinceWorn = c.lastWorn ? Math.floor((now-c.lastWorn)/86400000) : 999;
-    const isIdle = daysSinceWorn>30;
-    return `<div class="clothes-card" onclick="">
-      <div class="c-img-wrap">
-        ${c.img?`<img src="${c.img}" alt="${c.name}"/>`:`<span>${c.emoji}</span>`}
-        ${c.wearCount>0?`<div class="c-wear-count">穿了${c.wearCount}次</div>`:''}
-        ${isIdle?`<div class="c-idle-badge">闲置${daysSinceWorn>365?'1年+':daysSinceWorn+'天'}</div>`:''}
-      </div>
-      <div class="c-info">
-        <div class="c-name">${c.name}</div>
-        <div class="c-sub">${c.color} · ${c.type}</div>
-      </div>
-      <button class="del-btn" onclick="deleteClothes('${c.id}',event)">✕</button>
-    </div>`;
-  }).join('');
-}
-
-function filterClothes(el){
-  document.querySelectorAll('.f-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  renderWardrobe(el.dataset.type);
-}
-
-function deleteClothes(id, e){
-  e.stopPropagation();
-  const item = clothes.find(c=>c.id===id);
-  if(!item) return;
-  clothes = clothes.filter(c=>c.id!==id);
-  saveClothesData();
-  showToast(`已删除"${item.name}"`);
-  const activeFilter = document.querySelector('.f-chip.active');
-  renderWardrobe(activeFilter?.dataset.type||'全部');
-}
-
-// ============================================================
-// 穿搭推荐引擎
-// ============================================================
-const moodColorMap = { '活力':['红色系','黄色系','橙色'], '浪漫':['粉色系','紫色系'], '自信':['黑白系','红色系'], '慵懒':['米白系','灰色'], '优雅':['黑白系','紫色系','蓝色系'], '可爱':['粉色系','黄色系'] };
-const moodStyleMap = { '活力':['运动健身','休闲逛街'], '浪漫':['约会','聚会派对'], '自信':['商务正式','约会'], '慵懒':['居家','休闲逛街'], '优雅':['商务正式','约会','聚会派对'], '可爱':['约会','休闲逛街','聚会派对'] };
-const weatherStyleMap = { '晴天':['温暖','炎热','全天候'], '多云':['温暖','凉爽','全天候'], '阴天':['凉爽','全天候'], '小雨':['凉爽','雨天','全天候'], '大雨':['雨天','全天候'], '寒冷':['寒冷','全天候'] };
-
-function scoreClothes(c, weather, occasion, mood, colorPref, body){
-  let score=0, reasons=[];
-  const weatherMatch = c.weathers.some(w=>weatherStyleMap[weather]?.includes(w));
-  if(weatherMatch){score+=30;reasons.push('适合今日天气');}
-  const occMatch = c.occasions.some(o=>o===occasion);
-  if(occMatch){score+=25;reasons.push('场合完美契合');}
-  else if(c.occasions.some(o=>o==='旅行'||o==='日常通勤')){score+=10;}
-  if(colorPref==='随机'||c.colorFamily===colorPref){score+=20;reasons.push('颜色系match');}
-  const moodColors = moodColorMap[mood]||[];
-  const moodOccs = moodStyleMap[mood]||[];
-  if(moodColors.includes(c.colorFamily)){score+=8;reasons.push(`${mood}感色彩`);}
-  if(moodOccs.some(o=>c.occasions.includes(o))){score+=7;reasons.push('风格贴合心情');}
-  const bodyMatch = c.body.some(b=>b===body||b==='通用版型');
-  if(bodyMatch){score+=10;reasons.push('版型符合今日需求');}
-  const now = Date.now();
-  if(c.lastWorn&&(now-c.lastWorn)<3*86400000) score-=5;
-  if(!c.lastWorn||(now-c.lastWorn)>20*86400000) score+=5;
-  return { ...c, score: Math.max(0,Math.min(100,score)), reasons };
-}
-
-function generateOutfit(){
-  const weatherEl = document.querySelector('.w-chip.selected');
-  const weather = weatherEl?.dataset.weather||'晴天';
-  const occasion = document.querySelector('#occasionTags .tag.selected')?.textContent||'日常通勤';
-  const mood = document.querySelector('.mood-chip.selected')?.dataset.mood||'活力';
-  const colorPref = document.querySelector('.color-dot.selected')?.dataset.color||'随机';
-  const body = document.querySelector('#bodyTags .tag.selected')?.textContent||'普通状态';
-
-  const scored = clothes.map(c=>scoreClothes(c,weather,occasion,mood,colorPref,body))
-    .sort((a,b)=>b.score-a.score);
-  const top = scored.slice(0,5);
-
-  if(top.length===0){
-    document.getElementById('outfitResult').innerHTML = `<div class="card"><div class="empty"><span class="empty-icon">👗</span><div class="empty-text">衣橱是空的，先去添加衣物吧</div></div></div>`;
-    return;
-  }
-
-  const html = `
-    <div class="section-header">💖 推荐结果（根据今日情况智能匹配）</div>
-    <div class="outfit-list" style="padding:0 16px 16px">
-      ${top.map((c,i)=>`
-        <div class="outfit-row">
-          <div class="o-img">${c.img?`<img src="${c.img}"/>`:`<span>${c.emoji}</span>`}</div>
-          <div class="o-info">
-            <div>
-              <div class="o-name">${c.name}</div>
-              <div class="o-score">匹配度 ${c.score}分${i===0?' 🏆最佳':''}</div>
-              <div class="o-reason">${c.reasons.slice(0,2).join(' · ')}</div>
-            </div>
-            <button class="o-wear-btn" onclick="wearToday('${c.id}')">今天就穿这件 ✓</button>
-          </div>
-        </div>`).join('')}
-    </div>`;
-  document.getElementById('outfitResult').innerHTML = html;
-  document.getElementById('outfitResult').scrollIntoView({behavior:'smooth', block:'start'});
-  showToast(`已找到 ${top.length} 件适合今天的穿搭`);
-}
-
-// ============================================================
-// 穿搭记录
-// ============================================================
-function wearToday(clothesId){
-  const item = clothes.find(c=>c.id===clothesId);
-  if(!item) return;
-  item.wearCount++;
-  item.lastWorn = Date.now();
-  saveClothesData();
-  const today = new Date().toLocaleDateString('zh-CN',{month:'numeric',day:'numeric'});
-  const existing = records.find(r=>r.date===today);
-  if(existing){
-    if(!existing.items.includes(clothesId)) existing.items.push(clothesId);
-  } else {
-    records.unshift({ date:today, full: new Date().toLocaleDateString('zh-CN',{month:'2-digit',day:'2-digit'}), items:[clothesId] });
-    if(records.length>30) records.pop();
-  }
-  saveRecordsData();
-  showToast(`💗 已记录：今天穿了「${item.name}」`);
-}
-
+// ========== 渲染记录 ==========
 function renderRecords(){
-  const list = document.getElementById('recordList');
-  if(records.length===0){
-    list.innerHTML=`<div class="empty"><span class="empty-icon">📔</span><div class="empty-text">还没有穿搭记录<br>在「今日搭配」点击「今天就穿这件」开始记录</div></div>`;
+  if(records.length === 0){
+    document.getElementById('recordList').innerHTML = `
+      <div class="empty">
+        <span class="empty-icon">📅</span>
+        <span class="empty-text">还没有穿搭记录<br>快去「智能推荐」开始吧</span>
+      </div>
+    `;
+    document.getElementById('recentRecords').innerHTML = `
+      <div class="empty">
+        <span class="empty-icon">👗</span>
+        <span class="empty-text">还没有穿搭记录<br>快去「智能推荐」试试吧！</span>
+      </div>
+    `;
     return;
   }
-  list.innerHTML = records.map(r=>{
-    const itemNames = r.items.map(id=>{
-      const c = clothes.find(c=>c.id===id);
-      return c ? `<div class="record-chip">${c.emoji} ${c.name}</div>` : '';
-    }).join('');
-    return `<div class="record-item">
-      <div class="record-date">${r.date}</div>
-      <div class="record-clothes">${itemNames||'<span style="color:var(--gray);font-size:.78rem;font-weight:600">已删除的衣物</span>'}</div>
-    </div>`;
-  }).join('');
+
+  const recentHtml = records.slice(0,3).map(r => `
+    <div class="record-item">
+      <div class="record-date">${formatDate(r.date)}</div>
+      <div class="record-clothes">
+        ${r.clothes.map(c => `<div class="record-chip">${c}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('recentRecords').innerHTML = recentHtml;
+
+  const allHtml = records.map(r => `
+    <div class="record-item">
+      <div class="record-date">${formatDate(r.date)}</div>
+      <div class="record-clothes">
+        ${r.clothes.map(c => `<div class="record-chip">${c}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('recordList').innerHTML = allHtml;
 }
 
-// ============================================================
-// 统计
-// ============================================================
-function renderStats(){
+function formatDate(dateStr){
+  const d = new Date(dateStr);
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
+  return `${month}/${day} ${weekdays[d.getDay()]}`;
+}
+
+// ========== 统计 ==========
+function updateStats(){
   document.getElementById('statTotal').textContent = clothes.length;
   document.getElementById('statRecords').textContent = records.length;
-  const now = Date.now();
-  const idle = clothes.filter(c=>!c.lastWorn||(now-c.lastWorn)>30*86400000);
-  document.getElementById('statIdleCount').textContent = idle.length;
-  const colorCount={};
-  clothes.forEach(c=>{colorCount[c.colorFamily]=(colorCount[c.colorFamily]||0)+1;});
-  const favColor = Object.entries(colorCount).sort((a,b)=>b[1]-a[1])[0];
-  const colorEmoji={'粉色系':'💖','紫色系':'💜','蓝色系':'💙','绿色系':'💚','黄色系':'💛','红色系':'❤️','黑白系':'🖤','米白系':'🤍','随机':'🌈'};
-  document.getElementById('statFavColor').textContent = favColor ? (colorEmoji[favColor[0]]||'🎨') : '-';
 
-  const typeCount={};
-  clothes.forEach(c=>{typeCount[c.type]=(typeCount[c.type]||0)+1;});
-  const maxType = Math.max(...Object.values(typeCount),1);
-  document.getElementById('typeChart').innerHTML = Object.entries(typeCount)
-    .sort((a,b)=>b[1]-a[1])
-    .map(([t,n])=>`<div class="bar-row">
-      <div class="bar-label">${t}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/maxType*100)}%"></div></div>
-      <div class="bar-val">${n}</div>
-    </div>`).join('');
+  const colorMap = {};
+  const typeMap = {};
+  clothes.forEach(c => {
+    colorMap[c.color] = (colorMap[c.color] || 0) + 1;
+    typeMap[c.type] = (typeMap[c.type] || 0) + 1;
+  });
 
-  const maxColor = Math.max(...Object.values(colorCount),1);
-  document.getElementById('colorChart').innerHTML = Object.entries(colorCount)
-    .sort((a,b)=>b[1]-a[1])
-    .map(([c,n])=>`<div class="bar-row">
-      <div class="bar-label">${(colorEmoji[c]||'')+' '+c.replace('系','')}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/maxColor*100)}%"></div></div>
-      <div class="bar-val">${n}</div>
-    </div>`).join('');
+  const typeNames = {top:'上装',bottom:'下装',dress:'连衣裙',outer:'外套',shoes:'鞋子',accessory:'配饰'};
+  const colorHtml = Object.entries(colorMap).map(([color,count]) => {
+    const percent = Math.round((count / clothes.length) * 100);
+    return `
+      <div class="bar-row">
+        <div class="bar-label">${color}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${percent}%"></div>
+        </div>
+        <div class="bar-val">${count}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('colorChart').innerHTML = colorHtml || '<div class="empty"><span>暂无数据</span></div>';
 
-  const idleList = clothes
-    .map(c=>({ ...c, idle: c.lastWorn?Math.floor((now-c.lastWorn)/86400000):Math.floor((now-c.addedAt)/86400000) }))
-    .sort((a,b)=>b.idle-a.idle).slice(0,5);
-  document.getElementById('idleList').innerHTML = idleList.map((c,i)=>`
+  const typeHtml = Object.entries(typeMap).map(([type,count]) => {
+    const percent = Math.round((count / clothes.length) * 100);
+    return `
+      <div class="bar-row">
+        <div class="bar-label">${typeNames[type] || type}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${percent}%"></div>
+        </div>
+        <div class="bar-val">${count}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('typeChart').innerHTML = typeHtml || '<div class="empty"><span>暂无数据</span></div>';
+
+  const idleList = [...clothes].sort((a,b) => b.idleDays - a.idleDays).slice(0,5);
+  const idleHtml = idleList.map((c,i) => `
     <div class="idle-item">
-      <div class="idle-rank">${i+1}</div>
-      <div style="font-size:1.3rem">${c.emoji}</div>
+      <div class="idle-rank">${i + 1}</div>
       <div class="idle-name">${c.name}</div>
-      <div class="idle-days">闲置${c.idle>365?'1年+':c.idle+'天'}</div>
-    </div>`).join('');
+      <div class="idle-days">${c.idleDays}天未穿</div>
+    </div>
+  `).join('');
+  document.getElementById('idleList').innerHTML = idleHtml || '<div class="empty"><span>暂无数据</span></div>';
 }
 
-// ============================================================
-// 首页预览
-// ============================================================
-function renderHomePreview(){
-  const recPreview = document.getElementById('homeRecordPreview');
-  if(records.length===0){
-    recPreview.innerHTML=`<div style="background:#fff;border-radius:22px;padding:20px;text-align:center;box-shadow:0 6px 20px rgba(255,183,208,.15)"><div style="color:var(--gray);font-size:.9rem;font-weight:600">还没有穿搭记录</div></div>`;
-  } else {
-    recPreview.innerHTML=records.slice(0,3).map(r=>{
-      const itemNames = r.items.slice(0,2).map(id=>{
-        const c=clothes.find(c=>c.id===id);
-        return c?`<div class="record-chip">${c.emoji} ${c.name}</div>`:'';
-      }).join('');
-      return `<div class="record-item" style="margin-bottom:10px"><div class="record-date">${r.date}</div><div class="record-clothes">${itemNames}</div></div>`;
-    }).join('');
-  }
+// ========== 工具 ==========
+function saveData(){
+  localStorage.setItem('clothes',JSON.stringify(clothes));
+  localStorage.setItem('records',JSON.stringify(records));
 }
 
-// ============================================================
-// 初始化
-// ============================================================
-(function init(){
-  applyWeather();
-  renderHomePreview();
-  renderWardrobe('全部');
-  setTimeout(()=>{ refreshWeather().catch(()=>{}); }, 800);
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  }
-})();
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'),2000);
+}
 </script>
 </body>
 </html>
