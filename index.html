@@ -3,37 +3,41 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
-<title>衣橱助手</title>
+<title>穿什么 ✨</title>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#f472b6"/>
+<meta name="theme-color" content="#ffb7d0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="衣橱助手"/>
+<meta name="apple-mobile-web-app-title" content="穿什么"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --pink:#f472b6;--rose:#fb7185;--purple:#a78bfa;
-  --lavender:#ede9fe;--dark:#2d1b2e;--gray:#6b7280;
-  --bg:#fdf2f8;--card:#fff;
+  /* 可爱少女风配色 */
+  --pinky:#ffb7d0; --sakura:#ffd6e8; --lavender:#e8d5ff;
+  --sky:#bae6fd; --mint:#d1fae5; --lemon:#fef08a;
+  --peach:#fde68a; --rose:#fca5a5; --grape:#c4b5fd;
+  --dark:#1f172a; --gray:#78716c; --light:#fef7ff;
+  --bg:linear-gradient(135deg, #fff1f5 0%, #fce7f3 30%, #fdf4ff 70%, #faf5ff 100%);
+  --card:#ffffff;
   --safe-top:env(safe-area-inset-top,44px);
   --safe-bottom:env(safe-area-inset-bottom,20px);
 }
-html,body{height:100%;width:100%;overflow:hidden;background:#f0e6f0}
+html,body{height:100%;width:100%;overflow:hidden;background:#fce4ec}
 body{
-  font-family:-apple-system,"PingFang SC","Hiragino Sans GB",sans-serif;
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","M PLUS Rounded 1c",sans-serif;
   display:flex;align-items:center;justify-content:center;
   color:var(--dark);
 }
 
-/* ========== 手机壳容器（桌面端显示手机框） ========== */
+/* ========== 手机壳容器 ========== */
 .phone-shell{
-  width:min(390px,100vw);
-  height:min(844px,100vh);
+  width:min(393px,100vw);
+  height:min(852px,100vh);
   position:relative;
   overflow:hidden;
   background:var(--bg);
-  border-radius:min(44px,0px);
-  box-shadow:0 30px 80px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.2);
+  border-radius:min(46px,0px);
+  box-shadow:0 40px 100px rgba(255,183,208,.45),inset 0 0 0 1px rgba(255,255,255,.5);
 }
 @media(max-width:430px){
   .phone-shell{border-radius:0;box-shadow:none;width:100vw;height:100vh}
@@ -44,348 +48,337 @@ body{
 .status-bar{
   height:calc(var(--safe-top) + 4px);
   min-height:44px;
-  background:transparent;
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0));
   display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 18px 6px;
+  padding:0 20px 8px;
   position:absolute;top:0;left:0;right:0;z-index:100;
 }
-.status-time{font-size:.78rem;font-weight:700;color:var(--dark)}
-.status-icons{display:flex;gap:5px;align-items:center;font-size:.72rem;color:var(--dark)}
+.status-time{font-size:.8rem;font-weight:800;color:var(--dark)}
+.status-icons{display:flex;gap:6px;align-items:center;font-size:.74rem;color:var(--dark)}
 
 /* ========== 页头 ========== */
 .page-header{
   position:absolute;top:calc(var(--safe-top) + 4px);left:0;right:0;z-index:90;
   min-top:44px;
-  background:rgba(253,242,248,.95);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(244,114,182,.1);
+  background:rgba(255,255,255,.6);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,183,208,.15);
 }
 .header-row{
   display:flex;align-items:center;justify-content:space-between;
-  padding:10px 16px 10px;
+  padding:12px 18px 12px;
 }
-.header-title{font-size:1.05rem;font-weight:800;color:var(--dark)}
+.header-title{font-size:1.1rem;font-weight:900;color:var(--dark);letter-spacing:.02em}
 .header-badge{
-  display:flex;align-items:center;gap:5px;
-  background:linear-gradient(135deg,#fce7f3,#ede9fe);
-  padding:5px 12px;border-radius:999px;
-  font-size:.78rem;font-weight:600;color:var(--dark);
-  cursor:pointer;border:none;
+  display:flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#ffb7d0,#e8d5ff);
+  padding:6px 14px;border-radius:999px;
+  font-size:.8rem;font-weight:700;color:#fff;
+  cursor:pointer;border:none;box-shadow:0 4px 12px rgba(255,183,208,.4);
+  transition:transform .2s;
 }
+.header-badge:active{transform:scale(.95)}
 
 /* ========== 滚动内容区 ========== */
 .scroll-content{
   position:absolute;left:0;right:0;bottom:0;
   overflow-y:auto;overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
-  padding-bottom:calc(66px + var(--safe-bottom));
+  padding-bottom:calc(74px + var(--safe-bottom));
 }
 .scroll-content::-webkit-scrollbar{display:none}
 
 /* ========== 底部Tab导航 ========== */
 .tab-bar{
   position:absolute;bottom:0;left:0;right:0;z-index:200;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-top:1px solid rgba(244,114,182,.12);
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-top:2px solid rgba(255,183,208,.18);
   display:flex;
-  padding-bottom:var(--safe-bottom);
+  padding:10px 0 calc(8px + var(--safe-bottom));
+  box-shadow:0 -4px 24px rgba(255,183,208,.25);
 }
 .tab-item{
   flex:1;display:flex;flex-direction:column;align-items:center;
-  padding:8px 4px 6px;border:none;background:none;cursor:pointer;
-  color:#c4b5c8;font-size:.64rem;font-weight:600;gap:3px;
-  transition:all .2s;
+  padding:6px 4px 4px;border:none;background:none;cursor:pointer;
+  color:#d6d6d6;font-size:.65rem;font-weight:700;gap:4px;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  position:relative;
 }
-.tab-icon{font-size:1.35rem;transition:transform .2s}
-.tab-item.active{color:var(--pink)}
-.tab-item.active .tab-icon{transform:scale(1.12)}
+.tab-icon{font-size:1.5rem;transition:all .25s cubic-bezier(.4,0,.2,1);filter:grayscale(.6)}
+.tab-item.active{color:var(--pinky);transform:translateY(-4px)}
+.tab-item.active .tab-icon{transform:scale(1.2);filter:grayscale(0) drop-shadow(0 4px 12px rgba(255,183,208,.5))}
+.tab-item.active::after{
+  content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  width:6px;height:6px;background:var(--pinky);border-radius:50%;box-shadow:0 0 12px var(--pinky);
+}
 
 /* ========== Tab页面 ========== */
-.tab-page{display:none}
+.tab-page{display:none;animation:fadeInUp .35s ease-out}
 .tab-page.active{display:block}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 /* ========== 卡片 ========== */
 .card{
-  background:rgba(255,255,255,.92);
-  border-radius:20px;
-  box-shadow:0 4px 20px rgba(180,100,130,.1);
-  padding:18px;margin:0 14px 14px;
+  background:rgba(255,255,255,.95);
+  border-radius:26px;
+  box-shadow:0 8px 32px rgba(255,183,208,.18);
+  padding:20px;margin:0 16px 16px;
+  border:2px solid rgba(255,255,255,.8);
 }
 .card-title{
-  font-size:.95rem;font-weight:700;
+  font-size:1rem;font-weight:800;
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:14px;
+  margin-bottom:16px;color:var(--dark);
 }
-.card-title-l{display:flex;align-items:center;gap:7px}
+.card-title-l{display:flex;align-items:center;gap:8px}
 
 /* ========== 首页 Hero ========== */
 .hero{
-  margin:14px 14px 0;border-radius:24px;overflow:hidden;
-  background:linear-gradient(135deg,#667eea 0%,#f472b6 50%,#fb7185 100%);
-  padding:22px 20px;color:#fff;position:relative;
+  margin:16px 16px 0;border-radius:28px;overflow:hidden;
+  background:linear-gradient(135deg,#ffb7d6 0%,#ff9ed4 25%,#fbb6ce 50%,#ffcce0 75%,#ffe6f2 100%);
+  padding:28px 22px;color:#fff;position:relative;
+  box-shadow:0 12px 36px rgba(255,183,208,.45);
 }
-.hero-sub{font-size:.82rem;opacity:.85;margin-bottom:4px}
-.hero-title{font-size:1.4rem;font-weight:900;margin-bottom:4px}
-.hero-desc{font-size:.78rem;opacity:.75}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="3" fill="%23fff" opacity="0.3"/></svg>');
+  background-size:60px 60px;
+}
+.hero-sub{font-size:.86rem;opacity:.9;margin-bottom:6px;position:relative;z-index:1}
+.hero-title{font-size:1.5rem;font-weight:900;margin-bottom:6px;position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.1)}
+.hero-desc{font-size:.8rem;opacity:.8;position:relative;z-index:1}
 .hero-emoji{
-  position:absolute;right:18px;top:50%;transform:translateY(-50%);
-  font-size:3.6rem;opacity:.9;
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-size:4rem;opacity:.95;filter:drop-shadow(0 8px 16px rgba(0,0,0,.15));
+  animation:float 3s ease-in-out infinite;
 }
-.hero-temp{font-size:1.1rem;font-weight:800;margin-top:10px}
+@keyframes float{0%,100%{transform:translateY(-50%)}50%{transform:translateY(-54%)}}
+.hero-temp{font-size:1.15rem;font-weight:800;margin-top:12px;position:relative;z-index:1;background:rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;display:inline-block;backdrop-filter:blur(8px)}
 
 /* ========== 快捷入口 ========== */
 .quick-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-  padding:0 14px;margin-bottom:14px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  padding:0 16px;margin-bottom:16px;
 }
 .quick-item{
-  background:#fff;border-radius:16px;padding:14px 8px 12px;
+  background:linear-gradient(145deg,#ffffff,#fdfdfd);border-radius:20px;padding:16px 10px 14px;
   text-align:center;cursor:pointer;
-  box-shadow:0 2px 10px rgba(180,100,130,.08);
-  transition:all .2s;border:none;
+  box-shadow:0 6px 20px rgba(255,183,208,.15);
+  transition:all .25s cubic-bezier(.4,0,.2,1);border:2px solid transparent;
 }
 .quick-item:active{transform:scale(.95)}
-.quick-icon{font-size:1.6rem;display:block;margin-bottom:5px}
-.quick-label{font-size:.7rem;color:var(--gray);font-weight:600}
+.quick-item:hover{border-color:var(--pinky);transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,183,208,.3)}
+.quick-icon{font-size:1.75rem;display:block;margin-bottom:6px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.1))}
+.quick-label{font-size:.73rem;color:var(--gray);font-weight:700}
 
 /* ========== 标签选择 ========== */
-.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
 .tag{
-  padding:6px 13px;border-radius:999px;cursor:pointer;
-  font-size:.8rem;font-weight:500;
-  border:1.5px solid #e5e7eb;color:#6b7280;
-  background:#f9fafb;transition:all .15s;user-select:none;
+  padding:7px 16px;border-radius:999px;cursor:pointer;
+  font-size:.82rem;font-weight:700;
+  border:2px solid #fce7f3;color:#d6d6d6;
+  background:#fff;transition:all .18s cubic-bezier(.4,0,.2,1);user-select:none;
 }
-.tag.selected{background:var(--pink);color:#fff;border-color:var(--pink)}
+.tag.selected{background:linear-gradient(135deg,#ffb7d0,#ffcce0);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,183,208,.4);transform:scale(1.05)}
 .tag:active{transform:scale(.95)}
+.tag:hover:not(.selected){border-color:var(--pinky);color:var(--pinky)}
 
 /* ========== 颜色选择 ========== */
-.color-row{display:flex;flex-wrap:wrap;gap:8px}
+.color-row{display:flex;flex-wrap:wrap;gap:10px}
 .color-dot{
-  width:28px;height:28px;border-radius:50%;cursor:pointer;
-  border:2px solid transparent;transition:transform .15s,border-color .15s;
+  width:32px;height:32px;border-radius:50%;cursor:pointer;
+  border:3px solid transparent;transition:all .18s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
-.color-dot.selected{border-color:var(--dark);transform:scale(1.25)}
+.color-dot.selected{border-color:var(--dark);transform:scale(1.2);box-shadow:0 0 20px rgba(255,183,208,.6)}
 
 /* ========== 天气卡片 ========== */
-.weather-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.weather-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
 .weather-row::-webkit-scrollbar{display:none}
 .w-chip{
-  min-width:68px;background:#fff;border-radius:14px;padding:10px 8px;
+  min-width:72px;background:linear-gradient(145deg,#fff,#fdf4ff);border-radius:18px;padding:12px 10px;
   text-align:center;cursor:pointer;border:2px solid transparent;
-  box-shadow:0 2px 8px rgba(180,100,130,.07);flex-shrink:0;
-  transition:all .15s;
+  box-shadow:0 4px 12px rgba(255,183,208,.12);flex-shrink:0;
+  transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.w-chip.selected{border-color:var(--pink);background:#fef0fa}
-.w-chip .wi{font-size:1.5rem}
-.w-chip .wl{font-size:.7rem;color:var(--gray);margin-top:2px}
-.w-chip .wt{font-size:.75rem;font-weight:700;color:var(--dark)}
+.w-chip.selected{border-color:var(--pinky);background:linear-gradient(135deg,#fff0f5,#ffe4ec);box-shadow:0 6px 18px rgba(255,183,208,.35);transform:scale(1.05)}
+.w-chip .wi{font-size:1.6rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))}
+.w-chip .wl{font-size:.74rem;color:var(--gray);font-weight:700}
+.w-chip .wt{font-size:.78rem;font-weight:800;color:var(--dark);margin-top:2px}
 
 /* ========== 心情选择 ========== */
-.mood-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.mood-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
 .mood-row::-webkit-scrollbar{display:none}
 .mood-chip{
-  min-width:64px;background:#fff;border-radius:14px;padding:10px 6px;
+  min-width:68px;background:linear-gradient(145deg,#fff,#f0f9ff);border-radius:18px;padding:12px 8px;
   text-align:center;cursor:pointer;border:2px solid transparent;
-  box-shadow:0 2px 8px rgba(180,100,130,.07);flex-shrink:0;
-  transition:all .15s;
+  box-shadow:0 4px 12px rgba(196,181,253,.12);flex-shrink:0;
+  transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.mood-chip.selected{border-color:var(--purple);background:#f5f0ff}
-.mood-chip .mi{font-size:1.5rem}
-.mood-chip .ml{font-size:.7rem;color:var(--gray);margin-top:3px}
+.mood-chip.selected{border-color:var(--lavender);background:linear-gradient(135deg,#f5f3ff,#ede9fe);box-shadow:0 6px 18px rgba(196,181,253,.35);transform:scale(1.05)}
+.mood-chip .mi{font-size:1.7rem;margin-bottom:4px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))}
+.mood-chip .ml{font-size:.74rem;color:var(--gray);font-weight:700}
 
 /* ========== 按钮 ========== */
 .btn{
-  padding:12px 24px;border-radius:999px;border:none;cursor:pointer;
-  font-size:.9rem;font-weight:700;transition:all .2s;
-  display:inline-flex;align-items:center;gap:6px;
+  padding:14px 28px;border-radius:999px;border:none;cursor:pointer;
+  font-size:.95rem;font-weight:800;transition:all .2s cubic-bezier(.4,0,.2,1);
+  display:inline-flex;align-items:center;gap:8px;
 }
-.btn-primary{background:linear-gradient(135deg,var(--pink),var(--rose));color:#fff}
-.btn-primary:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;box-shadow:0 6px 20px rgba(255,183,208,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,183,208,.55)}
+.btn-primary:active{transform:translateY(0) scale(.98)}
 .btn-full{width:100%;justify-content:center}
-.btn-sm{padding:7px 16px;font-size:.8rem}
-.btn-ghost{background:transparent;border:1.5px solid var(--pink);color:var(--pink)}
+.btn-sm{padding:8px 18px;font-size:.83rem}
+.btn-ghost{background:transparent;border:2.5px solid var(--pinky);color:var(--pinky);font-weight:800}
 
 /* ========== 推荐结果 ========== */
-.outfit-list{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.outfit-list{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 .outfit-row{
-  background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 2px 10px rgba(180,100,130,.08);
-  display:flex;transition:all .2s;
+  background:#fff;border-radius:22px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(255,183,208,.15);
+  display:flex;transition:all .2s;border:2px solid transparent;
 }
+.outfit-row:hover{border-color:var(--pinky);box-shadow:0 10px 28px rgba(255,183,208,.25)}
 .outfit-row:active{transform:scale(.99)}
 .outfit-row .o-img{
-  width:90px;height:90px;background:linear-gradient(135deg,#fdf2f8,#ede9fe);
+  width:96px;height:96px;background:linear-gradient(135deg,#fff0f5,#ffe4ec);
   display:flex;align-items:center;justify-content:center;
-  font-size:2.4rem;flex-shrink:0;overflow:hidden;
+  font-size:2.5rem;flex-shrink:0;overflow:hidden;
 }
 .outfit-row .o-img img{width:100%;height:100%;object-fit:cover}
-.outfit-row .o-info{flex:1;padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between}
-.o-name{font-size:.9rem;font-weight:700;color:var(--dark)}
-.o-score{font-size:.75rem;color:var(--pink);font-weight:700}
-.o-reason{font-size:.75rem;color:var(--gray);line-height:1.45;margin-top:3px}
+.outfit-row .o-info{flex:1;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between}
+.o-name{font-size:.95rem;font-weight:800;color:var(--dark)}
+.o-score{font-size:.78rem;color:var(--pinky);font-weight:800}
+.o-reason{font-size:.76rem;color:var(--gray);line-height:1.45;margin-top:4px}
 .o-wear-btn{
-  align-self:flex-end;padding:5px 12px;border-radius:999px;border:none;
-  background:linear-gradient(135deg,#fdf2f8,#fce7f3);
-  color:var(--pink);font-size:.75rem;font-weight:700;cursor:pointer;
-  transition:all .15s;
+  align-self:flex-end;padding:7px 16px;border-radius:999px;border:none;
+  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  color:var(--pinky);font-size:.8rem;font-weight:800;cursor:pointer;
+  transition:all .15s;box-shadow:0 3px 10px rgba(255,183,208,.2);
 }
-.o-wear-btn:active{background:linear-gradient(135deg,var(--pink),var(--rose));color:#fff}
+.o-wear-btn:active{background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;transform:scale(.95)}
 
 /* ========== 衣橱网格 ========== */
-.clothes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.clothes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .clothes-card{
-  background:#fff;border-radius:14px;overflow:hidden;
-  box-shadow:0 2px 8px rgba(180,100,130,.08);cursor:pointer;
-  transition:all .2s;position:relative;
+  background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(255,183,208,.12);cursor:pointer;
+  transition:all .2s;position:relative;border:2px solid transparent;
 }
+.clothes-card:hover{border-color:var(--pinky);transform:translateY(-4px);box-shadow:0 10px 28px rgba(255,183,208,.25)}
 .clothes-card:active{transform:scale(.97)}
 .c-img-wrap{
-  aspect-ratio:1;background:linear-gradient(135deg,#fdf2f8,#ede9fe);
+  aspect-ratio:1;background:linear-gradient(135deg,#fff0f5,#ffe4ec);
   display:flex;align-items:center;justify-content:center;
-  font-size:2rem;overflow:hidden;position:relative;
+  font-size:2.2rem;overflow:hidden;position:relative;
 }
 .c-img-wrap img{width:100%;height:100%;object-fit:cover}
 .c-wear-count{
-  position:absolute;bottom:4px;right:4px;
-  background:rgba(0,0,0,.5);color:#fff;
-  font-size:.62rem;padding:2px 5px;border-radius:999px;font-weight:600;
+  position:absolute;bottom:6px;right:6px;
+  background:rgba(0,0,0,.55);color:#fff;
+  font-size:.65rem;padding:3px 8px;border-radius:999px;font-weight:800;
+  backdrop-filter:blur(4px);
 }
 .c-idle-badge{
-  position:absolute;top:4px;left:4px;
+  position:absolute;top:6px;left:6px;
   background:#fef3c7;color:#d97706;
-  font-size:.6rem;padding:1px 5px;border-radius:999px;font-weight:700;
+  font-size:.64rem;padding:2px 8px;border-radius:999px;font-weight:800;
 }
-.c-info{padding:7px 8px 9px}
-.c-name{font-size:.78rem;font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.c-sub{font-size:.68rem;color:var(--gray);margin-top:2px}
+.c-info{padding:10px 12px 12px}
+.c-name{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-sub{font-size:.7rem;color:var(--gray);margin-top:3px;font-weight:600}
 .del-btn{
-  position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;
-  background:rgba(255,255,255,.9);border:none;cursor:pointer;
-  font-size:.7rem;display:none;align-items:center;justify-content:center;z-index:2;
+  position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,.95);border:none;cursor:pointer;
+  font-size:.75rem;display:none;align-items:center;justify-content:center;z-index:2;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 .clothes-card:hover .del-btn,.clothes-card:active .del-btn{display:flex}
 
 /* ========== 筛选栏 ========== */
-.filter-bar{
-  display:flex;gap:7px;overflow-x:auto;padding:0 14px 14px;
-}
+.filter-bar{display:flex;gap:8px;overflow-x:auto;padding:0 16px 16px}
 .filter-bar::-webkit-scrollbar{display:none}
 .f-chip{
-  white-space:nowrap;padding:6px 14px;border-radius:999px;
-  font-size:.78rem;font-weight:600;border:1.5px solid #e5e7eb;
-  color:var(--gray);background:#fff;cursor:pointer;flex-shrink:0;
-  transition:all .15s;
+  white-space:nowrap;padding:8px 18px;border-radius:999px;
+  font-size:.8rem;font-weight:700;border:2px solid #fce7f3;
+  color:#d6d6d6;background:#fff;cursor:pointer;flex-shrink:0;
+  transition:all .18s cubic-bezier(.4,0,.2,1);
 }
-.f-chip.active{background:var(--pink);color:#fff;border-color:var(--pink)}
+.f-chip.active{background:linear-gradient(135deg,#ffb7d0,#ffcce0);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(255,183,208,.4);transform:scale(1.03)}
 
 /* ========== 入库表单 ========== */
-.form-field{margin-bottom:14px}
-.form-label{font-size:.82rem;color:var(--gray);font-weight:500;margin-bottom:6px;display:block}
+.form-field{margin-bottom:16px}
+.form-label{font-size:.84rem;color:var(--gray);font-weight:700;margin-bottom:8px;display:block}
 .form-input{
-  width:100%;padding:11px 14px;border-radius:13px;
-  border:1.5px solid #e5e7eb;background:#fafafa;
-  font-size:.88rem;color:var(--dark);outline:none;
-  transition:border-color .2s;font-family:inherit;
+  width:100%;padding:13px 16px;border-radius:16px;
+  border:2px solid #fce7f3;background:#fafafa;
+  font-size:.9rem;color:var(--dark);outline:none;
+  transition:border-color .2s;font-family:inherit;font-weight:500;
 }
-.form-input:focus{border-color:var(--pink);background:#fff}
+.form-input:focus{border-color:var(--pinky);background:#fff;box-shadow:0 0 20px rgba(255,183,208,.2)}
 .upload-box{
-  border:2px dashed #f9a8d4;border-radius:16px;
-  padding:24px;text-align:center;cursor:pointer;
-  background:linear-gradient(135deg,#fdf2f8,#fce7f3);
-  transition:all .2s;position:relative;margin-bottom:14px;
+  border:3px dashed #ffcce0;border-radius:24px;
+  padding:28px;text-align:center;cursor:pointer;
+  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  transition:all .25s;position:relative;margin-bottom:16px;
 }
-.upload-box input[type=file]{
-  position:absolute;inset:0;opacity:0;cursor:pointer;
-  width:100%;height:100%;border:none;padding:0;
-}
-.upload-icon{font-size:2rem;display:block;margin-bottom:6px}
-.upload-text{font-size:.84rem;color:#9ca3af}
-.upload-text b{color:var(--pink)}
-.preview-img{max-height:120px;border-radius:10px;object-fit:cover;display:block;margin:0 auto}
-.ai-hint{
-  display:flex;align-items:center;gap:8px;
-  font-size:.8rem;color:var(--purple);font-weight:600;
-  padding:8px 12px;background:var(--lavender);border-radius:10px;margin-top:10px;
-}
-.spinner{width:14px;height:14px;border:2px solid #e5e7eb;border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite}
+.upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0}
+.upload-icon{font-size:2.4rem;display:block;margin-bottom:8px;filter:drop-shadow(0 4px 10px rgba(255,183,208,.3))}
+.upload-text{font-size:.88rem;color:var(--gray);font-weight:600}
+.upload-text b{color:var(--pinky)}
+.preview-img{max-height:130px;border-radius:16px;object-fit:cover;display:block;margin:0 auto;box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.ai-hint{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--grape);font-weight:700;padding:10px 14px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:16px;margin-top:12px}
+.spinner{width:16px;height:16px;border:3px solid #e9d5ff;border-top-color:var(--grape);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ========== 记录Tab ========== */
-.record-list{display:flex;flex-direction:column;gap:10px}
-.record-item{
-  background:#fff;border-radius:16px;padding:12px 14px;
-  display:flex;align-items:center;gap:12px;
-  box-shadow:0 2px 8px rgba(180,100,130,.07);
-}
-.record-date{font-size:.72rem;color:var(--gray);min-width:52px}
-.record-clothes{display:flex;gap:6px;flex:1;flex-wrap:wrap}
-.record-chip{
-  display:flex;align-items:center;gap:4px;
-  background:var(--lavender);padding:4px 8px;border-radius:999px;
-  font-size:.75rem;color:var(--purple);font-weight:500;
-}
+.record-list{display:flex;flex-direction:column;gap:12px}
+.record-item{background:#fff;border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 20px rgba(255,183,208,.12)}
+.record-date{font-size:.76rem;color:var(--gray);min-width:56px;font-weight:700}
+.record-clothes{display:flex;gap:8px;flex:1;flex-wrap:wrap}
+.record-chip{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);padding:5px 10px;border-radius:999px;font-size:.78rem;color:var(--grape);font-weight:700}
 
 /* ========== 统计 ========== */
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.stat-card{
-  background:#fff;border-radius:16px;padding:16px;
-  box-shadow:0 2px 8px rgba(180,100,130,.07);text-align:center;
-}
-.stat-num{font-size:1.8rem;font-weight:900;color:var(--pink)}
-.stat-label{font-size:.75rem;color:var(--gray);margin-top:2px}
-.chart-bar{display:flex;flex-direction:column;gap:8px}
-.bar-row{display:flex;align-items:center;gap:8px}
-.bar-label{font-size:.78rem;color:var(--gray);width:48px;text-align:right;flex-shrink:0}
-.bar-track{flex:1;height:10px;background:#f3f4f6;border-radius:999px;overflow:hidden}
-.bar-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--rose));border-radius:999px;transition:width .6s ease}
-.bar-val{font-size:.75rem;font-weight:600;color:var(--dark);min-width:20px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 6px 20px rgba(255,183,208,.12);text-align:center;border:2px solid #ffe4ec}
+.stat-num{font-size:1.95rem;font-weight:900;color:var(--pinky);filter:drop-shadow(0 2px 6px rgba(255,183,208,.3))}
+.stat-label{font-size:.76rem;color:var(--gray);margin-top:4px;font-weight:700}
+.chart-bar{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-label{font-size:.8rem;color:var(--gray);width:54px;text-align:right;flex-shrink:0;font-weight:700}
+.bar-track{flex:1;height:12px;background:#fce7f3;border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#ffb7d0,#ff99c8);border-radius:999px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.bar-val{font-size:.78rem;font-weight:800;color:var(--dark);min-width:24px}
 
 /* ========== 闲置排行 ========== */
-.idle-list{display:flex;flex-direction:column;gap:8px}
-.idle-item{
-  background:#fff;border-radius:14px;padding:10px 12px;
-  display:flex;align-items:center;gap:10px;
-  box-shadow:0 2px 8px rgba(180,100,130,.07);
-}
-.idle-rank{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--rose));color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-.idle-name{flex:1;font-size:.84rem;font-weight:600}
-.idle-days{font-size:.75rem;color:#d97706;font-weight:700}
+.idle-list{display:flex;flex-direction:column;gap:10px}
+.idle-item{background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 12px rgba(255,183,208,.1)}
+.idle-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#ffb7d0,#ff99c8);color:#fff;font-size:.76rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(255,183,208,.3)}
+.idle-name{flex:1;font-size:.88rem;font-weight:800}
+.idle-days{font-size:.78rem;color:#d97706;font-weight:800;background:#fef3c7;padding:4px 10px;border-radius:999px}
 
 /* ========== toast ========== */
-.toast{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);
-  background:rgba(45,27,46,.88);color:#fff;padding:10px 20px;border-radius:14px;
-  font-size:.88rem;font-weight:600;z-index:9999;opacity:0;pointer-events:none;
-  transition:all .2s;backdrop-filter:blur(8px);
-}
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(31,23,42,.92);color:#fff;padding:12px 24px;border-radius:20px;font-size:.92rem;font-weight:800;z-index:9999;opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(10px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
 .toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ========== 空状态 ========== */
-.empty{text-align:center;padding:40px 20px;color:var(--gray)}
-.empty-icon{font-size:3rem;display:block;margin-bottom:12px;opacity:.4}
-.empty-text{font-size:.88rem}
+.empty{text-align:center;padding:48px 24px;color:var(--gray)}
+.empty-icon{font-size:3.4rem;display:block;margin-bottom:14px;opacity:.35;filter:drop-shadow(0 4px 10px rgba(255,183,208,.2))}
+.empty-text{font-size:.9rem;font-weight:600;line-height:1.6}
 
 /* ========== section spacing ========== */
-.section-header{
-  padding:16px 14px 8px;
-  font-size:.82rem;font-weight:700;color:var(--gray);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.see-all{font-size:.78rem;color:var(--pink);background:none;border:none;cursor:pointer}
+.section-header{padding:18px 16px 10px;font-size:.84rem;font-weight:800;color:var(--gray);display:flex;align-items:center;justify-content:space-between}
+.see-all{font-size:.8rem;color:var(--pinky);background:none;border:none;cursor:pointer;font-weight:700}
 
 /* ========== 加载遮罩 ========== */
-.loading-overlay{
-  position:absolute;inset:0;background:rgba(253,242,248,.85);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:500;gap:12px;
-}
-.loading-spinner{width:40px;height:40px;border:3px solid #f9a8d4;border-top-color:var(--pink);border-radius:50%;animation:spin .8s linear infinite}
-.loading-text{font-size:.88rem;color:var(--pink);font-weight:600}
+.loading-overlay{position:absolute;inset:0;background:rgba(255,241,245,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
+.loading-spinner{width:44px;height:44px;border:4px solid #ffcce0;border-top-color:var(--pinky);border-radius:50%;animation:spin 1s linear infinite}
+.loading-text{font-size:.92rem;color:var(--pinky);font-weight:800}
 
 /* ========== 顶部高度计算 ========== */
-#app-scroll{top:calc(var(--safe-top) + 56px)}
+#app-scroll{top:calc(var(--safe-top) + 64px)}
 </style>
 </head>
 <body>
@@ -393,7 +386,7 @@ body{
 
   <!-- 状态栏 -->
   <div class="status-bar">
-    <span class="status-time" id="statusTime">22:38</span>
+    <span class="status-time" id="statusTime">23:15</span>
     <div class="status-icons">
       <span>📶</span><span>🔋</span>
     </div>
@@ -402,7 +395,7 @@ body{
   <!-- 页头 -->
   <div class="page-header">
     <div class="header-row">
-      <div class="header-title" id="pageTitle">👗 我的衣橱</div>
+      <div class="header-title">✨ 穿什么</div>
       <button class="header-badge" id="weatherBadge" onclick="refreshWeather()">
         <span id="weatherIcon">🌤</span>
         <span id="weatherText">获取天气中…</span>
@@ -416,25 +409,25 @@ body{
     <!-- ====== Tab: 首页 ====== -->
     <div class="tab-page active" id="page-home">
       <!-- Hero -->
-      <div class="hero" style="margin-top:14px">
+      <div class="hero" style="margin-top:16px">
         <div class="hero-sub">今天也要美美的 ✨</div>
         <div class="hero-title" id="heroGreet">早安，穿搭日记</div>
         <div class="hero-desc" id="heroDate">正在获取今日天气...</div>
-        <div class="hero-emoji">👗</div>
+        <div class="hero-emoji">💗</div>
         <div class="hero-temp" id="heroWeather">加载中…</div>
       </div>
 
       <!-- 快捷入口 -->
-      <div style="padding:18px 14px 0">
-        <div style="font-size:.82rem;font-weight:700;color:var(--gray);margin-bottom:12px">快速入口</div>
+      <div style="padding:20px 16px 0">
+        <div style="font-size:.88rem;font-weight:800;color:var(--gray);margin-bottom:14px">✨ 快速入口</div>
       </div>
       <div class="quick-grid">
         <button class="quick-item" onclick="switchTab('match')">
-          <span class="quick-icon">✨</span>
+          <span class="quick-icon">💖</span>
           <span class="quick-label">今日搭配</span>
         </button>
         <button class="quick-item" onclick="switchTab('wardrobe')">
-          <span class="quick-icon">👔</span>
+          <span class="quick-icon">👗</span>
           <span class="quick-label">我的衣橱</span>
         </button>
         <button class="quick-item" onclick="switchTab('add')">
@@ -449,48 +442,48 @@ body{
 
       <!-- 今日推荐预览 -->
       <div class="section-header">
-        <span>今日灵感推荐</span>
+        <span>💝 今日灵感推荐</span>
         <button class="see-all" onclick="switchTab('match')">去搭配 →</button>
       </div>
-      <div id="homeOutfitPreview" style="padding:0 14px 14px">
-        <div style="background:#fff;border-radius:18px;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(180,100,130,.08)">
-          <div style="font-size:2rem;margin-bottom:8px">👆</div>
-          <div style="font-size:.85rem;color:var(--gray)">告诉我你今天的心情和场合</div>
-          <div style="font-size:.8rem;color:var(--pink);font-weight:600;margin-top:4px">点击「今日搭配」开始</div>
+      <div id="homeOutfitPreview" style="padding:0 16px 16px">
+        <div style="background:#fff;border-radius:22px;padding:24px;text-align:center;box-shadow:0 6px 20px rgba(255,183,208,.15)">
+          <div style="font-size:2.4rem;margin-bottom:10px">💗</div>
+          <div style="font-size:.9rem;color:var(--gray);font-weight:600">告诉我你今天的心情和场合</div>
+          <div style="font-size:.84rem;color:var(--pinky);font-weight:800;margin-top:6px">点击「今日搭配」开始</div>
         </div>
       </div>
 
       <!-- 最近穿搭 -->
       <div class="section-header">
-        <span>最近穿搭记录</span>
+        <span>📅 最近穿搭记录</span>
         <button class="see-all" onclick="switchTab('record')">查看全部 →</button>
       </div>
-      <div id="homeRecordPreview" style="padding:0 14px 14px"></div>
+      <div id="homeRecordPreview" style="padding:0 16px 16px"></div>
     </div>
 
     <!-- ====== Tab: 今日搭配 ====== -->
     <div class="tab-page" id="page-match">
       <!-- 天气 -->
-      <div class="card" style="margin-top:14px">
+      <div class="card" style="margin-top:16px">
         <div class="card-title"><div class="card-title-l"><span>🌤</span>今天的天气</div></div>
         <div class="weather-row" id="weatherRow">
           <div class="w-chip selected" data-weather="晴天" data-temp="25" onclick="selectWeather(this)">
-            <div class="wi">☀️</div><div class="wl">晴天</div><div class="wt">25°</div>
+            <span class="wi">☀️</span><span class="wl">晴天</span><span class="wt">25°</span>
           </div>
           <div class="w-chip" data-weather="多云" data-temp="22" onclick="selectWeather(this)">
-            <div class="wi">⛅</div><div class="wl">多云</div><div class="wt">22°</div>
+            <span class="wi">⛅</span><span class="wl">多云</span><span class="wt">22°</span>
           </div>
           <div class="w-chip" data-weather="阴天" data-temp="18" onclick="selectWeather(this)">
-            <div class="wi">☁️</div><div class="wl">阴天</div><div class="wt">18°</div>
+            <span class="wi">☁️</span><span class="wl">阴天</span><span class="wt">18°</span>
           </div>
           <div class="w-chip" data-weather="小雨" data-temp="16" onclick="selectWeather(this)">
-            <div class="wi">🌦</div><div class="wl">小雨</div><div class="wt">16°</div>
+            <span class="wi">🌦</span><span class="wl">小雨</span><span class="wt">16°</span>
           </div>
           <div class="w-chip" data-weather="大雨" data-temp="14" onclick="selectWeather(this)">
-            <div class="wi">🌧</div><div class="wl">大雨</div><div class="wt">14°</div>
+            <span class="wi">🌧</span><span class="wl">大雨</span><span class="wt">14°</span>
           </div>
           <div class="w-chip" data-weather="寒冷" data-temp="8" onclick="selectWeather(this)">
-            <div class="wi">❄️</div><div class="wl">寒冷</div><div class="wt">8°</div>
+            <span class="wi">❄️</span><span class="wl">寒冷</span><span class="wt">8°</span>
           </div>
         </div>
       </div>
@@ -515,22 +508,22 @@ body{
         <div class="card-title"><div class="card-title-l"><span>💭</span>今天的心情</div></div>
         <div class="mood-row" id="moodRow">
           <div class="mood-chip selected" data-mood="活力" onclick="selectMood(this)">
-            <div class="mi">⚡</div><div class="ml">活力</div>
+            <span class="mi">⚡</span><span class="ml">活力</span>
           </div>
           <div class="mood-chip" data-mood="浪漫" onclick="selectMood(this)">
-            <div class="mi">🌸</div><div class="ml">浪漫</div>
+            <span class="mi">🌸</span><span class="ml">浪漫</span>
           </div>
           <div class="mood-chip" data-mood="自信" onclick="selectMood(this)">
-            <div class="mi">💪</div><div class="ml">自信</div>
+            <span class="mi">💪</span><span class="ml">自信</span>
           </div>
           <div class="mood-chip" data-mood="慵懒" onclick="selectMood(this)">
-            <div class="mi">😌</div><div class="ml">慵懒</div>
+            <span class="mi">😌</span><span class="ml">慵懒</span>
           </div>
           <div class="mood-chip" data-mood="优雅" onclick="selectMood(this)">
-            <div class="mi">🎀</div><div class="ml">优雅</div>
+            <span class="mi">🎀</span><span class="ml">优雅</span>
           </div>
           <div class="mood-chip" data-mood="可爱" onclick="selectMood(this)">
-            <div class="mi">🐱</div><div class="ml">可爱</div>
+            <span class="mi">🐱</span><span class="ml">可爱</span>
           </div>
         </div>
       </div>
@@ -539,15 +532,15 @@ body{
       <div class="card">
         <div class="card-title"><div class="card-title-l"><span>🎨</span>今天想穿什么色</div></div>
         <div class="color-row" id="colorPrefRow">
-          <div class="color-dot selected" style="background:#f472b6" data-color="粉色系" onclick="selectColor(this)" title="粉色系"></div>
-          <div class="color-dot" style="background:#a78bfa" data-color="紫色系" onclick="selectColor(this)" title="紫色系"></div>
-          <div class="color-dot" style="background:#60a5fa" data-color="蓝色系" onclick="selectColor(this)" title="蓝色系"></div>
-          <div class="color-dot" style="background:#34d399" data-color="绿色系" onclick="selectColor(this)" title="绿色系"></div>
-          <div class="color-dot" style="background:#fbbf24" data-color="黄色系" onclick="selectColor(this)" title="黄色系"></div>
-          <div class="color-dot" style="background:#f87171" data-color="红色系" onclick="selectColor(this)" title="红色系"></div>
-          <div class="color-dot" style="background:#1f2937" data-color="黑白系" onclick="selectColor(this)" title="黑白系"></div>
-          <div class="color-dot" style="background:#d1d5db" data-color="米白系" onclick="selectColor(this)" title="米白系"></div>
-          <div class="color-dot" style="background:linear-gradient(135deg,#f9a8d4,#a78bfa,#60a5fa)" data-color="随机" onclick="selectColor(this)" title="随机"></div>
+          <div class="color-dot selected" style="background:#ffb7d0" data-color="粉色系" onclick="selectColor(this)" title="粉色系"></div>
+          <div class="color-dot" style="background:#e8d5ff" data-color="紫色系" onclick="selectColor(this)" title="紫色系"></div>
+          <div class="color-dot" style="background:#bae6fd" data-color="蓝色系" onclick="selectColor(this)" title="蓝色系"></div>
+          <div class="color-dot" style="background:#d1fae5" data-color="绿色系" onclick="selectColor(this)" title="绿色系"></div>
+          <div class="color-dot" style="background:#fef08a" data-color="黄色系" onclick="selectColor(this)" title="黄色系"></div>
+          <div class="color-dot" style="background:#fca5a5" data-color="红色系" onclick="selectColor(this)" title="红色系"></div>
+          <div class="color-dot" style="background:#1f172a" data-color="黑白系" onclick="selectColor(this)" title="黑白系"></div>
+          <div class="color-dot" style="background:#fde68a" data-color="米白系" onclick="selectColor(this)" title="米白系"></div>
+          <div class="color-dot" style="background:linear-gradient(135deg,#ffb7d0,#e8d5ff,#bae6fd)" data-color="随机" onclick="selectColor(this)" title="随机"></div>
         </div>
       </div>
 
@@ -562,9 +555,9 @@ body{
         </div>
       </div>
 
-      <div style="padding:0 14px 14px">
-        <button class="btn btn-primary btn-full" onclick="generateOutfit()" style="font-size:.95rem;padding:14px">
-          ✨ 帮我搭配今天的穿搭
+      <div style="padding:0 16px 16px">
+        <button class="btn btn-primary btn-full" onclick="generateOutfit()" style="font-size:1rem;padding:16px">
+          💖 帮我搭配今天的穿搭
         </button>
       </div>
 
@@ -574,7 +567,7 @@ body{
 
     <!-- ====== Tab: 我的衣橱 ====== -->
     <div class="tab-page" id="page-wardrobe">
-      <div class="filter-bar" id="filterBar" style="margin-top:14px">
+      <div class="filter-bar" id="filterBar" style="margin-top:16px">
         <div class="f-chip active" data-type="全部" onclick="filterClothes(this)">全部</div>
         <div class="f-chip" data-type="上衣" onclick="filterClothes(this)">上衣</div>
         <div class="f-chip" data-type="外套" onclick="filterClothes(this)">外套</div>
@@ -584,21 +577,21 @@ body{
         <div class="f-chip" data-type="鞋子" onclick="filterClothes(this)">鞋子</div>
         <div class="f-chip" data-type="配件" onclick="filterClothes(this)">配件</div>
       </div>
-      <div style="padding:0 14px">
+      <div style="padding:0 16px">
         <div class="clothes-grid" id="clothesGrid"></div>
       </div>
-      <div style="height:20px"></div>
+      <div style="height:24px"></div>
     </div>
 
     <!-- ====== Tab: 添加衣物 ====== -->
     <div class="tab-page" id="page-add">
-      <div class="card" style="margin-top:14px">
+      <div class="card" style="margin-top:16px">
         <div class="card-title"><div class="card-title-l"><span>📸</span>上传衣物照片</div></div>
         <div class="upload-box" id="uploadBox">
           <input type="file" accept="image/*" onchange="handleImageUpload(event)"/>
-          <span class="upload-icon">🤳</span>
+          <span class="upload-icon">📸</span>
           <div class="upload-text">点击上传照片 或 <b>拍照添加</b></div>
-          <div class="upload-text" style="font-size:.75rem;margin-top:4px;color:#c4b5c8">支持 JPG、PNG、HEIF</div>
+          <div class="upload-text" style="font-size:.76rem;margin-top:6px;color:var(--gray);font-weight:600">支持 JPG、PNG、HEIF</div>
         </div>
         <div id="aiHintArea"></div>
       </div>
@@ -609,7 +602,7 @@ body{
           <label class="form-label">衣物名称</label>
           <input class="form-input" type="text" id="clothesName" placeholder="例：白色棉质T恤"/>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
           <div class="form-field">
             <label class="form-label">类型</label>
             <select class="form-input" id="clothesType">
@@ -625,11 +618,8 @@ body{
           <div class="form-field">
             <label class="form-label">颜色</label>
             <select class="form-input" id="clothesColor">
-              <option>白色</option><option>黑色</option><option>灰色</option>
-              <option>米色</option><option>粉色</option><option>红色</option>
-              <option>橙色</option><option>黄色</option><option>绿色</option>
-              <option>蓝色</option><option>紫色</option><option>棕色</option>
-              <option>多色/花纹</option>
+              <option>白色</option><option>黑色</option><option>灰色</option><option>米色</option><option>粉色</option><option>红色</option>
+              <option>橙色</option><option>黄色</option><option>绿色</option><option>蓝色</option><option>紫色</option><option>棕色</option><option>多色/花纹</option>
             </select>
           </div>
         </div>
@@ -673,8 +663,8 @@ body{
         </div>
       </div>
 
-      <div style="padding:0 14px 20px">
-        <button class="btn btn-primary btn-full" onclick="saveClothes()" style="font-size:.95rem;padding:14px">
+      <div style="padding:0 16px 20px">
+        <button class="btn btn-primary btn-full" onclick="saveClothes()" style="font-size:1rem;padding:16px">
           ➕ 加入我的衣橱
         </button>
       </div>
@@ -682,7 +672,7 @@ body{
 
     <!-- ====== Tab: 穿搭记录 ====== -->
     <div class="tab-page" id="page-record">
-      <div class="card" style="margin-top:14px">
+      <div class="card" style="margin-top:16px">
         <div class="card-title"><div class="card-title-l"><span>📅</span>穿搭日历记录</div></div>
         <div id="recordList"><div class="empty"><span class="empty-icon">📔</span><div class="empty-text">还没有穿搭记录<br>在「今日搭配」点击「今天就穿这套」开始记录</div></div></div>
       </div>
@@ -690,8 +680,8 @@ body{
 
     <!-- ====== Tab: 统计报告 ====== -->
     <div class="tab-page" id="page-stats">
-      <div style="padding:14px 14px 0">
-        <div style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:14px">📊 穿搭数据报告</div>
+      <div style="padding:16px 16px 0">
+        <div style="font-size:1.1rem;font-weight:900;color:var(--dark);margin-bottom:16px">📊 穿搭数据报告</div>
         <div class="stat-grid">
           <div class="stat-card">
             <div class="stat-num" id="statTotal">0</div>
@@ -739,7 +729,7 @@ body{
       <span class="tab-icon">🏠</span>首页
     </button>
     <button class="tab-item" data-tab="match" onclick="switchTab('match')">
-      <span class="tab-icon">✨</span>搭配
+      <span class="tab-icon">💖</span>搭配
     </button>
     <button class="tab-item" data-tab="wardrobe" onclick="switchTab('wardrobe')">
       <span class="tab-icon">👗</span>衣橱
@@ -764,7 +754,7 @@ body{
 // ============================================================
 // 数据层
 // ============================================================
-const STORAGE_KEYS = { clothes: 'wdc_clothes_v3', records: 'wdc_records_v2', weather: 'wdc_weather' };
+const STORAGE_KEYS = { clothes: 'wdc_clothes_v4', records: 'wdc_records_v3', weather: 'wdc_weather' };
 
 const DEMO_CLOTHES = [
   { id:'c1', name:'白色宽松T恤', type:'上衣', color:'白色', colorFamily:'米白系', emoji:'👕', img:null,
@@ -838,10 +828,8 @@ async function refreshWeather(){
     currentWeather = { icon, text:`${text} ${temp}°C`, temp, condition };
     applyWeather();
     showToast(`已获取实时天气：${text} ${temp}°C`);
-    // 自动匹配天气选项
     autoSelectWeather(temp, condition);
   } catch(e) {
-    // 降级：用高德/wttr.in
     try {
       const r2 = await fetch('https://wttr.in/?format=j1');
       const d2 = await r2.json();
@@ -868,7 +856,7 @@ function applyWeather(){
     `${now.getMonth()+1}月${now.getDate()}日 · ${['周日','周一','周二','周三','周四','周五','周六'][now.getDay()]}`;
   const h = now.getHours();
   document.getElementById('heroGreet').textContent =
-    h<11?'早安，今天也要美美的 🌸': h<14?'午安，下午穿什么呢 ☀️': h<18?'下午好，出门前搭配一下 ✨':'晚安，明天穿什么想好了吗 🌙';
+    h<11?'早安，今天也要美美的 🌸': h<14?'午安，下午穿什么呢 ☀️': h<18?'下午好，出门前搭配一下 💗':'晚安，明天穿什么想好了吗 ✨';
 }
 
 function autoSelectWeather(temp, condition){
@@ -889,7 +877,7 @@ function autoSelectWeather(temp, condition){
 // ============================================================
 // Tab切换
 // ============================================================
-const TAB_TITLES = {home:'👗 我的衣橱', match:'✨ 今日搭配', wardrobe:'👗 衣橱管理', add:'➕ 添加衣物', record:'📅 穿搭记录', stats:'📊 穿搭报告'};
+const TAB_TITLES = {home:'✨ 穿什么', match:'💖 今日搭配', wardrobe:'👗 衣橱管理', add:'➕ 添加衣物', record:'📅 穿搭记录', stats:'📊 穿搭报告'};
 function switchTab(tab){
   document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
@@ -911,7 +899,7 @@ function showToast(msg){
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2500);
 }
 
 // ============================================================
@@ -919,7 +907,6 @@ function showToast(msg){
 // ============================================================
 function toggleTag(el, group){
   if(group==='occasion'||group==='body'){
-    // 单选
     el.closest('.tags').querySelectorAll('.tag').forEach(t=>t.classList.remove('selected'));
     el.classList.add('selected');
   } else {
@@ -953,16 +940,13 @@ function handleImageUpload(e){
     uploadedImageData = ev.target.result;
     const box = document.getElementById('uploadBox');
     box.innerHTML = `<img class="preview-img" src="${uploadedImageData}"/><input type="file" accept="image/*" onchange="handleImageUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0"/>`;
-    // AI颜色识别（模拟）
-    document.getElementById('aiHintArea').innerHTML =
-      `<div class="ai-hint"><div class="spinner"></div>AI 正在识别颜色和类型…</div>`;
+    document.getElementById('aiHintArea').innerHTML = `<div class="ai-hint"><div class="spinner"></div>AI 正在识别颜色和类型…</div>`;
     setTimeout(()=>mockAiRecognize(uploadedImageData), 1500);
   };
   reader.readAsDataURL(file);
 }
 
 function mockAiRecognize(imgData){
-  // 用Canvas取主色
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   const img = new Image();
@@ -977,8 +961,7 @@ function mockAiRecognize(imgData){
     r=Math.round(r/cnt); g=Math.round(g/cnt); b=Math.round(b/cnt);
     const colorName = detectColorName(r,g,b);
     document.getElementById('clothesColor').value = colorName;
-    document.getElementById('aiHintArea').innerHTML =
-      `<div class="ai-hint" style="background:#e8f5e9;color:#2e7d32"><span>✅</span>AI识别主色：<b>${colorName}</b>（可手动修改）</div>`;
+    document.getElementById('aiHintArea').innerHTML = `<div class="ai-hint" style="background:#dcfce7;color:#16a34a"><span>✅</span>AI识别主色：<b>${colorName}</b>（可手动修改）</div>`;
     showToast(`AI识别颜色：${colorName}`);
   };
   img.src = imgData;
@@ -1003,11 +986,7 @@ function detectColorName(r,g,b){
 function saveClothes(){
   const name = document.getElementById('clothesName').value.trim();
   if(!name){ showToast('请填写衣物名称'); return; }
-  const colorMap = {
-    '白色':'米白系','黑色':'黑白系','灰色':'黑白系','米色':'米白系',
-    '粉色':'粉色系','红色':'红色系','橙色':'红色系','黄色':'黄色系',
-    '绿色':'绿色系','蓝色':'蓝色系','紫色':'紫色系','棕色':'米白系','多色/花纹':'随机'
-  };
+  const colorMap = {'白色':'米白系','黑色':'黑白系','灰色':'黑白系','米色':'米白系','粉色':'粉色系','红色':'红色系','橙色':'红色系','黄色':'黄色系','绿色':'绿色系','蓝色':'蓝色系','紫色':'紫色系','棕色':'米白系','多色/花纹':'随机'};
   const type = document.getElementById('clothesType').value;
   const color = document.getElementById('clothesColor').value;
   const typeEmojis = {'上衣':'👕','外套':'🧥','裤子':'👖','裙子':'🩴','连衣裙':'👗','鞋子':'👟','配件':'👜'};
@@ -1026,17 +1005,12 @@ function saveClothes(){
   };
   clothes.push(item);
   saveClothesData();
-  // 重置表单
   document.getElementById('clothesName').value='';
   document.getElementById('aiHintArea').innerHTML='';
   uploadedImageData=null;
-  document.getElementById('uploadBox').innerHTML=`
-    <input type="file" accept="image/*" onchange="handleImageUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0"/>
-    <span class="upload-icon">🤳</span>
-    <div class="upload-text">点击上传照片 或 <b>拍照添加</b></div>
-    <div class="upload-text" style="font-size:.75rem;margin-top:4px;color:#c4b5c8">支持 JPG、PNG、HEIF</div>`;
+  document.getElementById('uploadBox').innerHTML=`<input type="file" accept="image/*" onchange="handleImageUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0"/><span class="upload-icon">📸</span><div class="upload-text">点击上传照片 或 <b>拍照添加</b></div><div class="upload-text" style="font-size:.76rem;margin-top:6px;color:var(--gray);font-weight:600">支持 JPG、PNG、HEIF</div>`;
   document.querySelectorAll('#addOccasionTags .tag,#addWeatherTags .tag,#addBodyTags .tag').forEach(t=>t.classList.remove('selected'));
-  showToast(`✅ "${name}" 已加入衣橱！`);
+  showToast(`💗 "${name}" 已加入衣橱！`);
   switchTab('wardrobe');
 }
 
@@ -1089,54 +1063,27 @@ function deleteClothes(id, e){
 // ============================================================
 // 穿搭推荐引擎
 // ============================================================
-const moodColorMap = {
-  '活力':['红色系','黄色系','橙色'],
-  '浪漫':['粉色系','紫色系'],
-  '自信':['黑白系','红色系'],
-  '慵懒':['米白系','灰色'],
-  '优雅':['黑白系','紫色系','蓝色系'],
-  '可爱':['粉色系','黄色系']
-};
-const moodStyleMap = {
-  '活力':['运动健身','休闲逛街'],
-  '浪漫':['约会','聚会派对'],
-  '自信':['商务正式','约会'],
-  '慵懒':['居家','休闲逛街'],
-  '优雅':['商务正式','约会','聚会派对'],
-  '可爱':['约会','休闲逛街','聚会派对']
-};
-const weatherStyleMap = {
-  '晴天':['温暖','炎热','全天候'],
-  '多云':['温暖','凉爽','全天候'],
-  '阴天':['凉爽','全天候'],
-  '小雨':['凉爽','雨天','全天候'],
-  '大雨':['雨天','全天候'],
-  '寒冷':['寒冷','全天候']
-};
+const moodColorMap = { '活力':['红色系','黄色系','橙色'], '浪漫':['粉色系','紫色系'], '自信':['黑白系','红色系'], '慵懒':['米白系','灰色'], '优雅':['黑白系','紫色系','蓝色系'], '可爱':['粉色系','黄色系'] };
+const moodStyleMap = { '活力':['运动健身','休闲逛街'], '浪漫':['约会','聚会派对'], '自信':['商务正式','约会'], '慵懒':['居家','休闲逛街'], '优雅':['商务正式','约会','聚会派对'], '可爱':['约会','休闲逛街','聚会派对'] };
+const weatherStyleMap = { '晴天':['温暖','炎热','全天候'], '多云':['温暖','凉爽','全天候'], '阴天':['凉爽','全天候'], '小雨':['凉爽','雨天','全天候'], '大雨':['雨天','全天候'], '寒冷':['寒冷','全天候'] };
 
 function scoreClothes(c, weather, occasion, mood, colorPref, body){
   let score=0, reasons=[];
-  // 天气匹配 30分
   const weatherMatch = c.weathers.some(w=>weatherStyleMap[weather]?.includes(w));
   if(weatherMatch){score+=30;reasons.push('适合今日天气');}
-  // 场合匹配 25分
   const occMatch = c.occasions.some(o=>o===occasion);
   if(occMatch){score+=25;reasons.push('场合完美契合');}
   else if(c.occasions.some(o=>o==='旅行'||o==='日常通勤')){score+=10;}
-  // 颜色偏好 20分
   if(colorPref==='随机'||c.colorFamily===colorPref){score+=20;reasons.push('颜色系match');}
-  // 心情风格 15分
   const moodColors = moodColorMap[mood]||[];
   const moodOccs = moodStyleMap[mood]||[];
   if(moodColors.includes(c.colorFamily)){score+=8;reasons.push(`${mood}感色彩`);}
   if(moodOccs.some(o=>c.occasions.includes(o))){score+=7;reasons.push('风格贴合心情');}
-  // 体型适配 10分
   const bodyMatch = c.body.some(b=>b===body||b==='通用版型');
   if(bodyMatch){score+=10;reasons.push('版型符合今日需求');}
-  // 闲置惩罚/奖励
   const now = Date.now();
-  if(c.lastWorn&&(now-c.lastWorn)<3*86400000) score-=5; // 最近穿过降权
-  if(!c.lastWorn||(now-c.lastWorn)>20*86400000) score+=5; // 闲置久的推上来
+  if(c.lastWorn&&(now-c.lastWorn)<3*86400000) score-=5;
+  if(!c.lastWorn||(now-c.lastWorn)>20*86400000) score+=5;
   return { ...c, score: Math.max(0,Math.min(100,score)), reasons };
 }
 
@@ -1153,14 +1100,13 @@ function generateOutfit(){
   const top = scored.slice(0,5);
 
   if(top.length===0){
-    document.getElementById('outfitResult').innerHTML =
-      `<div class="card"><div class="empty"><span class="empty-icon">👗</span><div class="empty-text">衣橱是空的，先去添加衣物吧</div></div></div>`;
+    document.getElementById('outfitResult').innerHTML = `<div class="card"><div class="empty"><span class="empty-icon">👗</span><div class="empty-text">衣橱是空的，先去添加衣物吧</div></div></div>`;
     return;
   }
 
   const html = `
-    <div class="section-header">推荐结果（根据今日情况智能匹配）</div>
-    <div class="outfit-list" style="padding:0 14px 14px">
+    <div class="section-header">💖 推荐结果（根据今日情况智能匹配）</div>
+    <div class="outfit-list" style="padding:0 16px 16px">
       ${top.map((c,i)=>`
         <div class="outfit-row">
           <div class="o-img">${c.img?`<img src="${c.img}"/>`:`<span>${c.emoji}</span>`}</div>
@@ -1189,7 +1135,6 @@ function wearToday(clothesId){
   item.lastWorn = Date.now();
   saveClothesData();
   const today = new Date().toLocaleDateString('zh-CN',{month:'numeric',day:'numeric'});
-  // 合并到今日记录
   const existing = records.find(r=>r.date===today);
   if(existing){
     if(!existing.items.includes(clothesId)) existing.items.push(clothesId);
@@ -1198,7 +1143,7 @@ function wearToday(clothesId){
     if(records.length>30) records.pop();
   }
   saveRecordsData();
-  showToast(`✅ 已记录：今天穿了「${item.name}」`);
+  showToast(`💗 已记录：今天穿了「${item.name}」`);
 }
 
 function renderRecords(){
@@ -1214,7 +1159,7 @@ function renderRecords(){
     }).join('');
     return `<div class="record-item">
       <div class="record-date">${r.date}</div>
-      <div class="record-clothes">${itemNames||'<span style="color:var(--gray);font-size:.78rem">已删除的衣物</span>'}</div>
+      <div class="record-clothes">${itemNames||'<span style="color:var(--gray);font-size:.78rem;font-weight:600">已删除的衣物</span>'}</div>
     </div>`;
   }).join('');
 }
@@ -1228,14 +1173,12 @@ function renderStats(){
   const now = Date.now();
   const idle = clothes.filter(c=>!c.lastWorn||(now-c.lastWorn)>30*86400000);
   document.getElementById('statIdleCount').textContent = idle.length;
-  // 最爱颜色
   const colorCount={};
   clothes.forEach(c=>{colorCount[c.colorFamily]=(colorCount[c.colorFamily]||0)+1;});
   const favColor = Object.entries(colorCount).sort((a,b)=>b[1]-a[1])[0];
-  const colorEmoji={'粉色系':'🌸','紫色系':'💜','蓝色系':'💙','绿色系':'💚','黄色系':'💛','红色系':'❤️','黑白系':'🖤','米白系':'🤍','随机':'🌈'};
+  const colorEmoji={'粉色系':'💖','紫色系':'💜','蓝色系':'💙','绿色系':'💚','黄色系':'💛','红色系':'❤️','黑白系':'🖤','米白系':'🤍','随机':'🌈'};
   document.getElementById('statFavColor').textContent = favColor ? (colorEmoji[favColor[0]]||'🎨') : '-';
 
-  // 类型分布
   const typeCount={};
   clothes.forEach(c=>{typeCount[c.type]=(typeCount[c.type]||0)+1;});
   const maxType = Math.max(...Object.values(typeCount),1);
@@ -1247,7 +1190,6 @@ function renderStats(){
       <div class="bar-val">${n}</div>
     </div>`).join('');
 
-  // 颜色分布
   const maxColor = Math.max(...Object.values(colorCount),1);
   document.getElementById('colorChart').innerHTML = Object.entries(colorCount)
     .sort((a,b)=>b[1]-a[1])
@@ -1257,14 +1199,13 @@ function renderStats(){
       <div class="bar-val">${n}</div>
     </div>`).join('');
 
-  // 闲置排行
   const idleList = clothes
     .map(c=>({ ...c, idle: c.lastWorn?Math.floor((now-c.lastWorn)/86400000):Math.floor((now-c.addedAt)/86400000) }))
     .sort((a,b)=>b.idle-a.idle).slice(0,5);
   document.getElementById('idleList').innerHTML = idleList.map((c,i)=>`
     <div class="idle-item">
       <div class="idle-rank">${i+1}</div>
-      <div style="font-size:1.2rem">${c.emoji}</div>
+      <div style="font-size:1.3rem">${c.emoji}</div>
       <div class="idle-name">${c.name}</div>
       <div class="idle-days">闲置${c.idle>365?'1年+':c.idle+'天'}</div>
     </div>`).join('');
@@ -1274,17 +1215,16 @@ function renderStats(){
 // 首页预览
 // ============================================================
 function renderHomePreview(){
-  // 最近记录
   const recPreview = document.getElementById('homeRecordPreview');
   if(records.length===0){
-    recPreview.innerHTML=`<div style="background:#fff;border-radius:16px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(180,100,130,.07)"><div style="color:var(--gray);font-size:.85rem">还没有穿搭记录</div></div>`;
+    recPreview.innerHTML=`<div style="background:#fff;border-radius:22px;padding:20px;text-align:center;box-shadow:0 6px 20px rgba(255,183,208,.15)"><div style="color:var(--gray);font-size:.9rem;font-weight:600">还没有穿搭记录</div></div>`;
   } else {
     recPreview.innerHTML=records.slice(0,3).map(r=>{
       const itemNames = r.items.slice(0,2).map(id=>{
         const c=clothes.find(c=>c.id===id);
         return c?`<div class="record-chip">${c.emoji} ${c.name}</div>`:'';
       }).join('');
-      return `<div class="record-item" style="margin-bottom:8px"><div class="record-date">${r.date}</div><div class="record-clothes">${itemNames}</div></div>`;
+      return `<div class="record-item" style="margin-bottom:10px"><div class="record-date">${r.date}</div><div class="record-clothes">${itemNames}</div></div>`;
     }).join('');
   }
 }
@@ -1296,11 +1236,7 @@ function renderHomePreview(){
   applyWeather();
   renderHomePreview();
   renderWardrobe('全部');
-  // 延迟获取天气
-  setTimeout(()=>{
-    refreshWeather().catch(()=>{});
-  }, 800);
-  // 注册 Service Worker
+  setTimeout(()=>{ refreshWeather().catch(()=>{}); }, 800);
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
   }
