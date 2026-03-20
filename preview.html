@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>衣橱助手 · 扫码体验</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,"PingFang SC",sans-serif;
+  background:linear-gradient(135deg,#fdf2f8 0%,#ede9fe 50%,#fce7f3 100%);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+.container{max-width:920px;width:100%;display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+/* 左：手机预览 */
+.phone-preview{
+  width:300px;flex-shrink:0;
+  background:#1a1a2e;border-radius:44px;padding:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  position:relative;
+}
+.phone-notch{
+  width:100px;height:24px;background:#1a1a2e;border-radius:0 0 16px 16px;
+  margin:0 auto 2px;position:relative;z-index:2;
+}
+.phone-screen{border-radius:36px;overflow:hidden;height:580px;background:#fff}
+.phone-screen iframe{width:100%;height:100%;border:none}
+/* 右：信息 */
+.info{flex:1;min-width:280px}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#f472b6,#a78bfa);
+  color:#fff;padding:5px 14px;border-radius:999px;
+  font-size:.78rem;font-weight:700;margin-bottom:16px;
+}
+h1{font-size:1.8rem;font-weight:900;color:#2d1b2e;margin-bottom:8px;line-height:1.2}
+.subtitle{font-size:.92rem;color:#6b7280;margin-bottom:24px;line-height:1.6}
+/* 二维码 */
+.qr-section{
+  background:#fff;border-radius:20px;padding:20px;
+  box-shadow:0 4px 20px rgba(180,100,130,.1);
+  margin-bottom:20px;display:inline-block;
+}
+.qr-title{font-size:.82rem;font-weight:700;color:#6b7280;margin-bottom:12px;text-align:center}
+#qrcode{display:flex;justify-content:center}
+.qr-url{font-size:.72rem;color:#9ca3af;text-align:center;margin-top:10px;word-break:break-all}
+/* 功能列表 */
+.features{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.feat{
+  display:flex;align-items:flex-start;gap:12px;
+  background:#fff;border-radius:14px;padding:12px 14px;
+  box-shadow:0 2px 8px rgba(180,100,130,.07);
+}
+.feat-icon{font-size:1.4rem;flex-shrink:0}
+.feat-info{}
+.feat-name{font-size:.88rem;font-weight:700;color:#2d1b2e}
+.feat-desc{font-size:.78rem;color:#6b7280;margin-top:2px;line-height:1.4}
+.feat-status{
+  display:inline-block;margin-top:4px;padding:2px 8px;border-radius:999px;
+  font-size:.7rem;font-weight:700;
+}
+.done{background:#dcfce7;color:#16a34a}
+.new{background:#fef3c7;color:#d97706}
+/* 链接按钮 */
+.open-btn{
+  display:block;width:100%;padding:13px;border-radius:999px;border:none;
+  background:linear-gradient(135deg,#f472b6,#fb7185);color:#fff;
+  font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;
+  text-decoration:none;transition:all .2s;
+  box-shadow:0 6px 20px rgba(244,114,182,.35);
+}
+.open-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(244,114,182,.45)}
+@media(max-width:680px){
+  .phone-preview{display:none}
+  .container{flex-direction:column;align-items:stretch}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- 左：嵌入预览 -->
+  <div class="phone-preview">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+      <iframe src="./index.html" title="衣橱助手预览"></iframe>
+    </div>
+  </div>
+
+  <!-- 右：信息 -->
+  <div class="info">
+    <div class="badge">✨ 小程序 Demo 版</div>
+    <h1>智能衣橱助手<br>👗 每日穿搭不迷路</h1>
+    <div class="subtitle">
+      衣物入库 · 场合/天气/心情三维推荐<br>
+      AI颜色识别 · 穿搭记录 · 闲置分析
+    </div>
+
+    <!-- 外网直达 -->
+    <div style="background:#dcfce7;border:2px solid #16a34a;border-radius:14px;padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+      <span style="font-size:1.4rem">🌍</span>
+      <div>
+        <div style="font-size:.78rem;font-weight:700;color:#166534;margin-bottom:2px">外网直达（无需同WiFi）</div>
+        <div style="font-size:.78rem;color:#166534">任何地方的手机都能打开</div>
+      </div>
+      <a id="extLink" href="#" target="_blank" class="btn-sm" style="margin-left:auto;background:#16a34a;color:#fff;padding:6px 14px;border-radius:999px;text-decoration:none;font-size:.75rem;font-weight:700">立即打开</a>
+    </div>
+
+    <!-- 二维码 -->
+    <div class="qr-section">
+      <div class="qr-title">📱 手机扫码体验（外网 + 内网都支持）</div>
+      <div id="qrcode"></div>
+      <div class="qr-url" id="qrUrl">生成中…</div>
+    </div>
+
+    <!-- 功能清单 -->
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">🌤</div>
+        <div class="feat-info">
+          <div class="feat-name">自动获取实时天气</div>
+          <div class="feat-desc">定位后自动调用 Open-Meteo 免费API，智能匹配天气选项</div>
+          <span class="feat-status done">✅ 已完成</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📸</div>
+        <div class="feat-info">
+          <div class="feat-name">AI图片颜色识别</div>
+          <div class="feat-desc">上传照片后用Canvas分析主色，自动填入颜色字段</div>
+          <span class="feat-status done">✅ 已完成</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📅</div>
+        <div class="feat-info">
+          <div class="feat-name">穿搭记录 & 闲置分析</div>
+          <div class="feat-desc">点击「今天就穿这件」自动记录，报告页展示闲置排行榜</div>
+          <span class="feat-status done">✅ 已完成</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📱</div>
+        <div class="feat-info">
+          <div class="feat-name">PWA 小程序化</div>
+          <div class="feat-desc">Safari「添加到主屏幕」后像小程序一样全屏使用</div>
+          <span class="feat-status done">✅ 已完成</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">✨</div>
+        <div class="feat-info">
+          <div class="feat-name">多维穿搭推荐引擎</div>
+          <div class="feat-desc">天气30分 + 场合25分 + 颜色偏好20分 + 心情风格15分 + 体型10分</div>
+          <span class="feat-status done">✅ 已完成</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="./index.html" class="open-btn" target="_blank">🚀 打开完整版体验</a>
+  </div>
+</div>
+
+<script>
+const extUrl = 'https://wardrobe-demo-1774018180.loca.lt/index.html';
+document.getElementById('extLink').href = extUrl;
+document.getElementById('qrUrl').textContent = extUrl;
+new QRCode(document.getElementById('qrcode'), {
+  text: extUrl,
+  width: 160, height: 160,
+  colorDark: '#2d1b2e', colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.M
+});
+</script>
+</body>
+</html>
